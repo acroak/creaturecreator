@@ -17,9 +17,9 @@ app.use(express.static('public'));
 // app.use('/todos', todosController);
 
 
-app.get('/', ( req, res )=>{
-  res.render('index.ejs')
-})
+// app.get('/', ( req, res )=>{
+//   res.render('index.ejs')
+// })
 
 app.listen(port, ()=>{
     console.log('listening on', port);

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" ng-app="MyApp">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Creature Creator</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.2/angular.min.js"></script>
+    <script type="text/javascript" src="/js/paper-full.js" async></script>
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.min.js"
+      integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+      crossorigin="anonymous">
+    </script>
+    <script src="/js/app.js" charset="utf-8"></script>
+    <script type="text/paperscript" src="/js/custom_paper.js" canvas="newCanvas" async></script>
+    <link rel="stylesheet" href="/css/main.css">
+  </head>
+  <body ng-controller = "MainController as ctrl">
+    <div class="container">
+      <div class="bar">
+        <div class="">
+          <input type="text" name="" value="" />
+          <input type="submit" name="" value="submit" />
+        </div>
+        <div class="">
+          <h1>Creature Creator</h1>
+        </div>
+        <div class="">
+          <h4>Login</h4>
+          <h4>Register</h4>
+        </div>
+      </div>
+      <div class="main-content">
+        <div class="home-page">
+          <!--  display home page/landing page if you are not logged in/registered-->
+          <!-- shows ALL created creatures -->
+          <div class="gallery">
+            <img src="https://vignette.wikia.nocookie.net/project-pokemon/images/4/47/Placeholder.png/revision/latest?cb=20170330235552" alt="" />
+            <img src="https://vignette.wikia.nocookie.net/project-pokemon/images/4/47/Placeholder.png/revision/latest?cb=20170330235552" alt="" />
+            <img src="https://vignette.wikia.nocookie.net/project-pokemon/images/4/47/Placeholder.png/revision/latest?cb=20170330235552" alt="" />
+            <img src="https://vignette.wikia.nocookie.net/project-pokemon/images/4/47/Placeholder.png/revision/latest?cb=20170330235552" alt="" />
+            <img src="https://vignette.wikia.nocookie.net/project-pokemon/images/4/47/Placeholder.png/revision/latest?cb=20170330235552" alt="" />
+            <img src="https://vignette.wikia.nocookie.net/project-pokemon/images/4/47/Placeholder.png/revision/latest?cb=20170330235552" alt="" />
+            <img src="https://vignette.wikia.nocookie.net/project-pokemon/images/4/47/Placeholder.png/revision/latest?cb=20170330235552" alt="" />
+          </div>
+        </div>
+
+        <div class="all-canvas-items">
+          <!--  create page accessible only if you are logged in-->
+          <div class="canvas-container">
+            <canvas id="newCanvas"></canvas>
+          </div>
+
+          <div id="color-picker">
+            <div class="color" id="red"></div>
+            <div class="color" id="orange"></div>
+            <div class="color" id="yellow"></div>
+            <div class="color" id="green"></div>
+            <div class="color" id="blue"></div>
+            <div class="color" id="purple"></div>
+            <div class="color" id="pink"></div>
+            <div class="color" id="black"></div>
+            <div class="color" id="white"></div>
+          </div>
+
+          <form class="" action="index.html" method="post">
+            <label for="beast-name">Beast Name:</label>
+            <input type="text" name="" value="" id="beast-name">
+            <br />
+            <label for="beast-decription">Description:</label>
+            <textarea rows="8" cols="60" id="beast-decription"></textarea>
+          </form>
+
+          <div class="">
+            <button>Save</button>
+            <button>Undo</button>
+            <button>Clear</button><br>
+          </div>
+        </div>
+
+        <div class="your-gallery">
+          <!-- display only your creations -->
+        </div>
+
+        <div class="footer">
+          <div class="">
+            <h5>coder</h5>
+          </div>
+          <div class="">
+            <h5>Credits</h5>
+          </div>
+          <div class="">
+            <div class="color">social icons</div>
+            <div class="color">social icons</div>
+            <div class="color">social icons</div>
+          </div>
+        </div>
+      </div> <!-- Closes the main-content div -->
+    </div> <!-- Closes the container div -->
+  </body>
+</html>

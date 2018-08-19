@@ -1,0 +1,110 @@
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+html {
+  box-sizing: border-box;
+}
+
+.container{
+  display: flex;
+  border: 1px solid red;
+  flex-direction: column;
+}
+
+.main-content{
+  border: 1px solid orange;
+  margin: 5px;
+  width: 100%;
+
+}
+.bar {
+  display: flex;
+  align-items: center;
+  border: 3px solid salmon;
+  width: 100%;
+  padding: 20px;
+  position: sticky;
+  justify-content: center;
+}
+.gallery{
+  border: 1px solid yellow;
+  width: 80%;
+  margin: 0 auto;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+img{
+  max-height: 250px;
+  max-width: 200px;
+  padding: 5px;
+  background-color: gray;
+}
+.all-canvas-items{
+  border: 1px solid purple;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+.all-canvas-items button {
+  width: auto;
+  padding: 15px;
+}
+.color-picker{
+
+}
+.color{
+  width: 50px;
+  height: 50px;
+  border: 1px solid blue;
+  display: inline-block;
+}
+#red {
+  background-color: red;
+}
+
+#orange {
+  background-color: orange;
+}
+
+#yellow {
+  background-color: yellow;
+}
+
+#green {
+  background-color: green;
+}
+
+#blue {
+  background-color: blue;
+}
+
+#purple {
+  background-color: purple;
+}
+
+#pink {
+  background-color: hotpink;
+}
+
+#black {
+  background-color: black;
+}
+
+#white {
+  background-color: #fffcff;
+}
+
+.canvas-container{
+
+}
+canvas {
+  width: 500px;
+  height: 600px;
+  margin: 0 auto;
+  background-color: #fffcff;
+  border: 5px solid green;
+  border-radius: 5px;
+}
+.footer{
+  text-align: center;
+}
