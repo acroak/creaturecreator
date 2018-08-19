@@ -1,0 +1,28 @@
+{
+  "name": "creaturecreator",
+  "version": "1.0.0",
+  "description": "Draw and name your own or know mythological beasts!",
+  "main": "server.js",
+  "dependencies": {
+    "ejs": "^2.6.1",
+    "express": "^4.16.3",
+    "mongoose": "^5.2.9",
+    "mongoose-unique-validator": "^2.0.1",
+    "paper": "^0.11.5"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/acroak/creaturecreator.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/acroak/creaturecreator/issues"
+  },
+  "homepage": "https://github.com/acroak/creaturecreator#readme"
+}
