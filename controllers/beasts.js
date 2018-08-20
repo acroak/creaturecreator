@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const {Beast} = require('../models/beasts.js')
-// const {User} = require('../models/beasts.js')
+const {User} = require('../models/beasts.js')
 
 //get
 router.get('/', (req, res) => {

@@ -2,6 +2,8 @@ var path;
 var stroke_color = 'black';
 var canvasData = null;
 var stroke_width = 5;
+var createdName = null;
+var createdDescript = null;
 
 
 $('#red').click(function() {
@@ -71,11 +73,12 @@ function post(path, parameters) {
 }
 
 $('#save-button').click(function() {
-  //share = $('input[name="share"]:checked').val();
+console.log('SAVE BTN CLICKED');
   canvasData = project.exportSVG({ asString: true });
+  createdName = $("#name").val();
+  createdDescript = $("#description").val();
   console.log(canvasData);
-  // post('/doodles/', { doodle: canvasData, share: share, user: id });
-  console.log("The user id is:", id);
+  post('/beasts/', { beastImg: canvasData, name: createdName, description:createdDescript});
 });
 
 $('#clear-button').click(function() {

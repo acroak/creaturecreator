@@ -2,11 +2,10 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const beastSchema = new mongoose.Schema({
-  // beastImg: String,
+  beastImg: String,
   name: String,
   description: String,
-  //share: { type: Boolean, default: false },
-  //user: { type: mongoose.Schema.Types.ObjectId, ref: 'User'}
+
 })
 const usersSchema = new Schema({
   username: String,

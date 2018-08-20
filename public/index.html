@@ -58,7 +58,7 @@
     <div class= "header" ng-include="'partials/header.html'"></div>
 
 <!-- CREATE/SUBMIT NEW BEAST -->
-    <form id="createBeast" ng-submit="ctrl.createBeast()">
+    <form id="createBeast" >
       <br/>
       <div class="createFields">
 
@@ -83,12 +83,13 @@
           <button type="button" name="button" id="width-decrease">Brush -</button>
         </div>
 
-        <input type="text" ng-model="ctrl.beastName" placeholder="Name"/>
+        <input type="text" id="name" placeholder="Name"/>
         <!-- <br/> -->
-        <input type="text" ng-model="ctrl.description" placeholder="Description"/>
+        <input type="text"  id="description" placeholder="Description"/>
         <!-- <br/> -->
         <!-- <br/> -->
-        <div class="" ng-if="ctrl.loggedIn">
+        <div class="">
+        <!-- <div class="" ng-if="ctrl.loggedIn"> -->
           <button id='save-button'>Save</button>
           <button>Undo</button>
           <button>Clear</button><br>
@@ -109,14 +110,17 @@
             <h1>Gallery</h1>
           </div>
           <div class="beast" ng-repeat="beast in ctrl.beasts |filter: searchBox | orderBy: order">
+
+
             <ul>
               <li>
-                <div ng-click="ctrl.toggleShow(); ctrl.chooseOneBeast(beast)" class="beastImg">
+
                 <img ng-src="{{beast.beastImg}}" alt="beast image"/>
               </li>
               <div class="belowImg">
                 <div class="beastData">
-                  <li>{{beast.beastImg}}</li>
+              RAW:  {{beast.beastImg}}
+
                   <li>
                     Name: {{beast.name}}
                   </li>
@@ -126,8 +130,8 @@
 
                 </div>
                 <div class="buttons">
-                  <!-- <button ng-if="ctrl.loggedIn" class="myButton" ng-click="ctrl.chooseOneBeast(beast); ctrl.toggleModal()">Update Listing</button> -->
-                  <button ng-if="ctrl.loggedIn"  class="myButton" ng-click="ctrl.deleteBeast(beast)">Delete Listing</button>
+                  <!-- <button ng-if="ctrl.loggedIn" class="myButton" ng-click="ctrl.chooseOneBeast(beast); ctrl.toggleModal()">Update Beast</button> -->
+                  <button ng-if="ctrl.loggedIn"  class="myButton" ng-click="ctrl.deleteBeast(beast)">Delete Beast</button>
                 </div>
               </div>
           </div>
@@ -137,7 +141,7 @@
 
       <!-- <div class="currentUserBeasts" ng-if="ctrl.loggedIn && ctrl.noModal && ctrl.noShow">
         <div class="favs">
-          <h1>Favorite Listings</h1>
+          <h1>Favorite Beasts</h1>
         </div>
         <div class="beast" ng-repeat="beast in ctrl.currentUserBeasts">
           <!-- <div class="beastData"> -->
