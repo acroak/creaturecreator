@@ -25,13 +25,7 @@ app.controller('MyController', ['$http', function($http){
     this.noModal = !this.noModal
   }
 
-  this.createModal = false;
 
-  this.toggleCreateModal = function(){
-    this.createModal = !this.createModal
-    this.noModal = !this.noModal
-    console.log(this.createModal)
-  }
 
 //GET USER
   this.getUser = function(){
@@ -127,22 +121,25 @@ this.logOut = function(){
           method:'POST',
           url:'/beasts',
           data: {
-            image: this.image,
+            // beastImg: this.beastImg,
             name: this.name,
             description: this.description
           }
       }).then(function(response){
           document.getElementById("createBeast").reset()
           controller.getBeasts();
-          controller.toggleCreateModal();
+          console.log(controller.name)
+          console.log(controller.description);
           console.log('success!');
-          controller.image = '';
+          // controller.beastImg = '';
           controller.name = '';
           controller.description = '';
+
       })
+
   }
 
-//GET
+//GET Beasts
   this.getBeasts = function(){
     $http({
       method:'GET',
@@ -214,7 +211,7 @@ this.logOut = function(){
             method: 'PUT',
             url: '/beasts/' + beast._id,
             data: {
-              image: this.image,
+              // beastImg: this.beastImg,
               name: this.name,
               description: this.description
             }
@@ -223,13 +220,14 @@ this.logOut = function(){
             controller.getBeasts()
             console.log('hi')
             console.log(response)
-            controller.toggleModal();
-            controller.image = '';
+            // controller.toggleModal();
+            // controller.beastImg = '';
             controller.name = '';
             controller.description = '';
           })
         }
-    // Click for show page
+
+// Click for show page
 
     this.chooseOneShowBeast = function(beast){
         this.beast = beast;

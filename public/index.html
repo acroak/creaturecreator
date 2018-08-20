@@ -24,7 +24,7 @@
   </head>
   <body ng-controller="MyController as ctrl">
 
-      <!-- EDIT PROPERTY FORM -->
+      <!-- EDIT BEAST FORM -->
  <!-- <div id="updateModal" ng-class="(ctrl.modal ? 'modalAppears' : 'modalDisappears')">
     <h1>UPDATE</h1>
     <form ng-submit="ctrl.updateBeast(ctrl.beast)"> -->
@@ -79,8 +79,8 @@
         </div>
 
         <div class="">
-          <button type="button" name="button" id="#width-increase">Brush +</button>
-          <button type="button" name="button" id="#width-decrease">Brush -</button>
+          <button type="button" name="button" id="width-increase">Brush +</button>
+          <button type="button" name="button" id="width-decrease">Brush -</button>
         </div>
 
         <input type="text" ng-model="ctrl.beastName" placeholder="Name"/>
@@ -89,12 +89,12 @@
         <!-- <br/> -->
         <!-- <br/> -->
         <div class="" ng-if="ctrl.loggedIn">
-          <button>Save</button>
+          <button id='save-button'>Save</button>
           <button>Undo</button>
           <button>Clear</button><br>
         </div>
         <div class="" ng-if="ctrl.loggedOut">
-          <h3>Please Sign in to save monsters</h3>
+          <h3>Sign in to save monsters</h3>
 <!-- Make sign in a modal so you can link it to here and in the header? -->
         </div>
       </div>
@@ -112,12 +112,13 @@
             <ul>
               <li>
                 <div ng-click="ctrl.toggleShow(); ctrl.chooseOneBeast(beast)" class="beastImg">
-                <img ng-src="{{beast.image}}" alt="beast image"/>
+                <img ng-src="{{beast.beastImg}}" alt="beast image"/>
               </li>
               <div class="belowImg">
                 <div class="beastData">
+                  <li>{{beast.beastImg}}</li>
                   <li>
-                    <span>Name:</span> {{beast.name}}
+                    Name: {{beast.name}}
                   </li>
                   <li>
                     {{beast.description}}

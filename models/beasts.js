@@ -2,7 +2,8 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const beastSchema = new mongoose.Schema({
-  beastName: String,
+  // beastImg: String,
+  name: String,
   description: String,
   //share: { type: Boolean, default: false },
   //user: { type: mongoose.Schema.Types.ObjectId, ref: 'User'}
