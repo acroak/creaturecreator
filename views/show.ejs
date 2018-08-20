@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <nav>
+    <a href="/beasts">HOME</a>
+    </nav>
+    <ul>
+
+      <li>
+        <h1>EVENTUAL IMAGE</h1>
+          Name: <%=beast.name; %>
+          Description: <%=beast.description; %>
+          tags: <%=beast.tags; %>
+      </li>
+
+    </ul>
+    <a href="/beasts/<%=beast.id; %>/edit"><button type="button" name="button">Edit</button></a>
+
+    <form action="/beasts/<%=beast.id; %>?_method=DELETE" method="POST">
+       <input type="submit" value="DELETE"/>
+   </form>
+  </body>
+</html>

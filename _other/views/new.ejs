@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" ng-app="MyApp">
+  <head>
+    <!-- PAPER.JS  -->
+    <script type="text/javascript" src="/js/paper-full.js" async></script>
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.min.js"
+      integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+      crossorigin="anonymous">
+    </script>
+    <script type="text/paperscript" src="/js/custom_paper.js" canvas="newCanvas" async></script>
+     <!-- BootStrap -->
+     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+     <!-- LOCAL CSS -->
+     <link rel="stylesheet" href="/css/main.css">
+     <!-- FAVICON -->
+     <link rel="icon" type="image/x-icon" href="http://www.clker.com/cliparts/G/e/H/R/i/A/orange-monster-hi.png">
+    <meta charset="utf-8">
+    <title>Creature Creator</title>
+  </head>
+  <body>
+
+
+
+<!-- CONTAINER -->
+    <div class="container">
+
+
+<!-- CREATE/SUBMIT NEW BEAST -->
+    <form id="createBeast" >
+      <br/>
+      <div class="createFields">
+
+        <div class="canvas-container">
+          <canvas id="newCanvas"></canvas>
+        </div>
+
+        <div id="color-picker">
+          <div class="color" id="red"></div>
+          <div class="color" id="orange"></div>
+          <div class="color" id="yellow"></div>
+          <div class="color" id="green"></div>
+          <div class="color" id="blue"></div>
+          <div class="color" id="purple"></div>
+          <div class="color" id="pink"></div>
+          <div class="color" id="black"></div>
+          <div class="color" id="white"></div>
+        </div>
+
+        <div class="">
+          <button type="button" name="button" id="width-increase">Brush +</button>
+          <button type="button" name="button" id="width-decrease">Brush -</button>
+        </div>
+
+        <input type="text" id="name" placeholder="Name"/>
+        <!-- <br/> -->
+        <input type="text"  id="description" placeholder="Description"/>
+        <!-- <br/> -->
+        <!-- <br/> -->
+        <div class="">
+        <!-- <div class="" ng-if="ctrl.loggedIn"> -->
+          <button id='save-button'>Save</button>
+          <button>Undo</button>
+          <button>Clear</button><br>
+        </div>
+        <div class="" ng-if="ctrl.loggedOut">
+          <h3>Sign in to save monsters</h3>
+<!-- Make sign in a modal so you can link it to here and in the header? -->
+        </div>
+      </div>
+    </form>
+
+
+        <!-- FOOTER -->
+        <div class="footer">
+          <div class="devs">
+            <h6>Developed by:</h6>
+            <a href="https://github.com/acroak">Andrea Croak</a>
+          </div>
+          <div class="ga">
+            <h6>Creature Creator</h6>
+            <p>Created for GA WDIR 2018 &copy;</p>
+            <a href="https://generalassemb.ly/">General Assembly</a>
+          </div>
+          <div class="info">
+            <h6>More Info</h6>
+            <a href="#">Contact</a>
+            <a href="#">Careers</a>
+          </div>
+          </div>
+        </div>
+      </div><!-- END CONTAINER DIV -->
+  </body>
+</html>

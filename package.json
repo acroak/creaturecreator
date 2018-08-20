@@ -1,7 +1,7 @@
 {
-  "name": "unit3_project",
+  "name": "creaturecreator",
   "version": "1.0.0",
-  "description": "group project",
+  "description": "creature creator",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -9,19 +9,19 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/austynheinlein/unit3_project.git"
+    "url": "git+https://github.com/acroak/creaturecreator.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/austynheinlein/unit3_project/issues"
+    "url": "https://github.com/acroak/creaturecreator/issues"
   },
-  "homepage": "https://github.com/austynheinlein/unit3_project#readme",
+  "homepage": "https://github.com/acroak/creaturecreator#readme",
   "dependencies": {
-    "bcryptjs": "^2.4.3",
+    "ejs": "^2.6.1",
     "express": "^4.16.3",
-    "express-session": "^1.15.6",
-    "mongoose": "^5.2.4",
-    "npm-server": "0.0.1"
+    "method-override": "^3.0.0",
+    "mongoose": "^5.2.9",
+    "paper": "^0.11.5"
   }
 }

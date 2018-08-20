@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Creature Creator</title>
+    <!-- PAPER.JS  -->
+    <!-- <script type="text/javascript" src="../js/paper-full.js" async></script> -->
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.min.js"
+      integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+      crossorigin="anonymous">
+    </script>
+    <script type="text/paperscript" src="/js/custom_paper.js" canvas="newCanvas" async></script>
+  </head>
+  <body>
+    <form class="" action="/beasts" method="POST">
+      <p>canvas will be here</p>
+      <div class="canvas-container">
+        <canvas id="newCanvas"></canvas>
+      </div>
+
+      <div id="color-picker">
+        <div class="color" id="red"></div>
+        <div class="color" id="orange"></div>
+        <div class="color" id="yellow"></div>
+        <div class="color" id="green"></div>
+        <div class="color" id="blue"></div>
+        <div class="color" id="purple"></div>
+        <div class="color" id="pink"></div>
+        <div class="color" id="black"></div>
+        <div class="color" id="white"></div>
+      </div>
+
+      <div class="">
+        <button type="button" name="button" id="width-increase">Brush +</button>
+        <button type="button" name="button" id="width-decrease">Brush -</button>
+      </div>
+
+        <br/>
+      Name:
+      <input type="text" name="name" value="name">
+        <br/>
+      Description:
+      <textarea name="description" rows="8" cols="80"></textarea>
+        <br/>
+      Tags:
+      <input type="text" name="tags" value="tags">
+        <br/>
+      <input type="submit" name="" value="Submit">
+    </form>
+
+
+  </body>
+</html>

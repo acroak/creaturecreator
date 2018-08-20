@@ -1,45 +1,24 @@
 const express = require('express');
 const app = express();
-const mongoose = require('mongoose')
-const mongoUri = process.env.MONGODB_URI || 'mongodb://localhost:27017/creature_creator';
- mongoose.connect(mongoUri);
- const session = require('express-session');
- const bcryptjs = require('bcryptjs')
+const mongoose = require('mongoose');
+const methodOverride = require('method-override');
+// const Beast = require('./models/beasts_model.js')
 
 
- // JSON middleware
- app.use(express.json());
-
- // Public middleware
- app.use(express.static("public"));
 
 
- // Session middleware
- app.use(session({
-     secret:'feedmeseymour',
-     resave: false,
-     saveUninitialized: false
- }));
+app.use(express.urlencoded({extended:true}));
+app.use(methodOverride('_method'));
 
- /// req.body middleware
- app.use(express.urlencoded({extended:false}));
+mongoose.connect('mongodb://localhost:27017/basiccrud');
+mongoose.connection.once('open', ()=> {
+    console.log('connected to mongo');
+});
 
- // controllers
+const beastsController = require('./controllers/beasts_controller.js');
+app.use('/beasts', beastsController);
 
- // beasts controller
- const beastsController = require('./controllers/beasts.js');
- app.use('/beasts', beastsController);
 
- //users controller
- const usersController = require('./controllers/users.js');
- app.use('/users', usersController);
-
- //sessions controller
- const sessionsController = require('./controllers/sessions.js');
- app.use('/sessions', sessionsController);
-
- const port = process.env.PORT || 3000;
- app.listen(port);
- console.log('---------------------------------');
- console.log('Server running on port: ' + port);
- console.log('---------------------------------');
+app.listen(3000, ()=>{
+  console.log('listening on 3000');
+})

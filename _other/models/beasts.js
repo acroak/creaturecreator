@@ -7,15 +7,10 @@ const beastSchema = new mongoose.Schema({
   description: String,
 
 })
-const usersSchema = new Schema({
-  username: String,
-  password: String,
-  beasts: [beastSchema]
-})
 
 
-const User = mongoose.model('User', usersSchema)
+
+
 const Beast = mongoose.model('Beast', beastSchema)
 
 module.exports.Beast = Beast
-module.exports.User = User

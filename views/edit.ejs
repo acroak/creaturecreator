@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Creature Creator</title>
+    </head>
+    <body>
+        <h1>Edit</h1>
+        <form action="/beasts/<%=beast.id%>?_method=PUT" method="POST">
+          <h1>EVENTUAL IMAGE</h1>
+      		Name: <input type="text" name="name" value="<%=beast.name%>"/>
+          <br/>
+      		Description: <input type="text" name="description" value="<%=beast.description%>"/>
+      		<br/>
+          Tags: <input type="text" name="tags" value="<%=beast.tags%>"/>
+          <br/>
+              <input type="submit" name="" value="Submit Changes"/>
+        </form>
+    </body>
+</html>

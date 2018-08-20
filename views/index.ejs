@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Creature Creator</title>
+  </head>
+  <body>
+    <h1>INDEX</h1>
+    <nav>
+    <a href="/beasts/new">Create a New Fruit</a>
+    </nav>
+      <ul>
+          <% for(let i = 0; i < beasts.length; i++){ %>
+            <a href="/beasts/<%=beasts[i].id; %>">  <li>
+                <h1>EVENTUAL IMAGE</h1>
+                  Name: <%=beasts[i].name; %>
+                  Description: <%=beasts[i].description; %>
+                  tags: <%=beasts[i].tags; %>
+              </li></a>
+          <% } %>
+      </ul>
+  </body>
+</html>

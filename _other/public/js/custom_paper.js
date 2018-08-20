@@ -78,7 +78,7 @@ console.log('SAVE BTN CLICKED');
   createdName = $("#name").val();
   createdDescript = $("#description").val();
   console.log(canvasData);
-  //post('/beasts', { beastImg: canvasData, name: createdName, description: createdDescript});
+  post('/beasts', { beastImg: canvasData, name: createdName, description: createdDescript});
 
 });
 
