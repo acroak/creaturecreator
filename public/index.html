@@ -1,101 +1,191 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr" ng-app="MyApp">
   <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Creature Creator</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.2/angular.min.js"></script>
+    <!-- ANGULAR -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.2/angular.min.js" charset="utf-8"></script>
+    <!-- PAPER.JS  -->
     <script type="text/javascript" src="/js/paper-full.js" async></script>
     <script
       src="https://code.jquery.com/jquery-3.3.1.min.js"
       integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
       crossorigin="anonymous">
     </script>
-    <script src="/js/app.js" charset="utf-8"></script>
     <script type="text/paperscript" src="/js/custom_paper.js" canvas="newCanvas" async></script>
-    <link rel="stylesheet" href="/css/main.css">
+    <!-- local JS -->
+    <script src="./js/app.js" charset="utf-8"></script>
+     <!-- BootStrap -->
+     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+     <!-- LOCAL CSS -->
+     <link rel="stylesheet" href="/css/main.css">
+     <!-- FAVICON -->
+     <link rel="icon" type="image/x-icon" href="http://www.clker.com/cliparts/G/e/H/R/i/A/orange-monster-hi.png">
+    <meta charset="utf-8">
+    <title>Creature Creator</title>
   </head>
-  <body ng-controller = "MainController as ctrl">
-    <div class="container">
-      <div class="bar">
-        <div class="">
-          <input type="text" name="" value="" />
-          <input type="submit" name="" value="submit" />
+  <body ng-controller="MyController as ctrl">
+
+      <!-- EDIT PROPERTY FORM -->
+ <!-- <div id="updateModal" ng-class="(ctrl.modal ? 'modalAppears' : 'modalDisappears')">
+    <h1>UPDATE</h1>
+    <form ng-submit="ctrl.updateBeast(ctrl.beast)"> -->
+      <!-- <br/> -->
+      <!-- <div class="createFields">
+        <input type="text" ng-model="ctrl.name" placeholder="{{ctrl.beast.name}}"/> -->
+        <!-- <br/> -->
+        <!-- <input type="text" ng-model="ctrl.description" placeholder="{{ctrl.beast.description}}"/> -->
+        <!-- <br/> -->
+
+        <!-- <div class="descript">
+          <input type="text" ng-model="ctrl.descript" placeholder="{{ctrl.beast.description}}"/>
         </div>
-        <div class="">
-          <h1>Creature Creator</h1>
+      </div> -->
+      <!-- <br/> -->
+      <!-- <div class="modalBtns">
+        <input type="submit" name="" value="CREATE"/>
+      </div>
+    </form>
+    <div class="modalBtns">
+      <button ng-click="ctrl.toggleModal()">Cancel</button>
+    </div>
+  </div> -->
+
+        <!-- </div> -->
+
+<!-- CONTAINER -->
+    <div class="container" ng-if="ctrl.noModal && ctrl.noShow">
+
+<!-- HEADER -->
+    <div class= "header" ng-include="'partials/header.html'"></div>
+
+<!-- CREATE/SUBMIT NEW BEAST -->
+    <form id="createBeast" ng-submit="ctrl.createBeast()">
+      <br/>
+      <div class="createFields">
+
+        <div class="canvas-container">
+          <canvas id="newCanvas"></canvas>
         </div>
+
+        <div id="color-picker">
+          <div class="color" id="red"></div>
+          <div class="color" id="orange"></div>
+          <div class="color" id="yellow"></div>
+          <div class="color" id="green"></div>
+          <div class="color" id="blue"></div>
+          <div class="color" id="purple"></div>
+          <div class="color" id="pink"></div>
+          <div class="color" id="black"></div>
+          <div class="color" id="white"></div>
+        </div>
+
         <div class="">
-          <h4>Login</h4>
-          <h4>Register</h4>
+          <button type="button" name="button" id="#width-increase">Brush +</button>
+          <button type="button" name="button" id="#width-decrease">Brush -</button>
+        </div>
+
+        <input type="text" ng-model="ctrl.beastName" placeholder="Name"/>
+        <!-- <br/> -->
+        <input type="text" ng-model="ctrl.description" placeholder="Description"/>
+        <!-- <br/> -->
+        <!-- <br/> -->
+        <div class="" ng-if="ctrl.loggedIn">
+          <button>Save</button>
+          <button>Undo</button>
+          <button>Clear</button><br>
+        </div>
+        <div class="" ng-if="ctrl.loggedOut">
+          <h3>Please Sign in to save monsters</h3>
+<!-- Make sign in a modal so you can link it to here and in the header? -->
         </div>
       </div>
-      <div class="main-content">
-        <div class="home-page">
-          <!--  display home page/landing page if you are not logged in/registered-->
-          <!-- shows ALL created creatures -->
-          <div class="gallery">
-            <img src="https://vignette.wikia.nocookie.net/project-pokemon/images/4/47/Placeholder.png/revision/latest?cb=20170330235552" alt="" />
-            <img src="https://vignette.wikia.nocookie.net/project-pokemon/images/4/47/Placeholder.png/revision/latest?cb=20170330235552" alt="" />
-            <img src="https://vignette.wikia.nocookie.net/project-pokemon/images/4/47/Placeholder.png/revision/latest?cb=20170330235552" alt="" />
-            <img src="https://vignette.wikia.nocookie.net/project-pokemon/images/4/47/Placeholder.png/revision/latest?cb=20170330235552" alt="" />
-            <img src="https://vignette.wikia.nocookie.net/project-pokemon/images/4/47/Placeholder.png/revision/latest?cb=20170330235552" alt="" />
-            <img src="https://vignette.wikia.nocookie.net/project-pokemon/images/4/47/Placeholder.png/revision/latest?cb=20170330235552" alt="" />
-            <img src="https://vignette.wikia.nocookie.net/project-pokemon/images/4/47/Placeholder.png/revision/latest?cb=20170330235552" alt="" />
-          </div>
-        </div>
+    </form>
 
-        <div class="all-canvas-items">
-          <!--  create page accessible only if you are logged in-->
-          <div class="canvas-container">
-            <canvas id="newCanvas"></canvas>
-          </div>
 
-          <div id="color-picker">
-            <div class="color" id="red"></div>
-            <div class="color" id="orange"></div>
-            <div class="color" id="yellow"></div>
-            <div class="color" id="green"></div>
-            <div class="color" id="blue"></div>
-            <div class="color" id="purple"></div>
-            <div class="color" id="pink"></div>
-            <div class="color" id="black"></div>
-            <div class="color" id="white"></div>
-          </div>
 
-          <form class="" action="index.html" method="post">
-            <label for="beast-name">Beast Name:</label>
-            <input type="text" name="" value="" id="beast-name">
-            <br />
-            <label for="beast-decription">Description:</label>
-            <textarea rows="8" cols="60" id="beast-decription"></textarea>
-          </form>
+        <!-- DISPLAY LISTING AND DELETE FUNCTIONALITY -->
+        <div ng-if="ctrl.noCurrentUserPage" class="beastImages">
 
           <div class="">
-            <button>Save</button>
-            <button>Undo</button>
-            <button>Clear</button><br>
+            <h1>Gallery</h1>
+          </div>
+          <div class="beast" ng-repeat="beast in ctrl.beasts |filter: searchBox | orderBy: order">
+            <ul>
+              <li>
+                <div ng-click="ctrl.toggleShow(); ctrl.chooseOneBeast(beast)" class="beastImg">
+                <img ng-src="{{beast.image}}" alt="beast image"/>
+              </li>
+              <div class="belowImg">
+                <div class="beastData">
+                  <li>
+                    <span>Name:</span> {{beast.name}}
+                  </li>
+                  <li>
+                    {{beast.description}}
+                  </li>
+
+                </div>
+                <div class="buttons">
+                  <!-- <button ng-if="ctrl.loggedIn" class="myButton" ng-click="ctrl.chooseOneBeast(beast); ctrl.toggleModal()">Update Listing</button> -->
+                  <button ng-if="ctrl.loggedIn"  class="myButton" ng-click="ctrl.deleteBeast(beast)">Delete Listing</button>
+                </div>
+              </div>
           </div>
         </div>
-
-        <div class="your-gallery">
-          <!-- display only your creations -->
         </div>
+      </div>
 
+      <!-- <div class="currentUserBeasts" ng-if="ctrl.loggedIn && ctrl.noModal && ctrl.noShow">
+        <div class="favs">
+          <h1>Favorite Listings</h1>
+        </div>
+        <div class="beast" ng-repeat="beast in ctrl.currentUserBeasts">
+          <!-- <div class="beastData"> -->
+            <!-- <ul>
+              <li>
+                <div ng-click="ctrl.toggleShow(); ctrl.chooseOneShowBeast(beast)" class="beastImg">
+                <img ng-src="{{beast.image}}" alt="beast image"/>
+              </li>
+              <div class="belowImg">
+                <div class="beastData">
+                  <li>
+                    <span>RENT:</span> ${{beast.rent}}
+                  </li>
+                  <li>
+                    {{beast.address}}
+                  </li>
+                  <li>
+                    {{beast.city}}
+                  </li>
+                  <li>
+                    {{beast.state}}
+                  </li>
+                </div>
+              </div>
+          </div> -->
+      <!-- </div> -->
+    <!--</div>
+  </div> -->
+
+        <div ng-if="ctrl.show" ng-include="'partials/showpage.html'">
+          </div>
+        <!-- FOOTER -->
         <div class="footer">
-          <div class="">
-            <h5>coder</h5>
+          <div class="devs">
+            <h6>Developed by:</h6>
+            <a href="https://github.com/acroak">Andrea Croak</a>
           </div>
-          <div class="">
-            <h5>Credits</h5>
+          <div class="ga">
+            <h6>Creature Creator</h6>
+            <p>Created for GA WDIR 2018 &copy;</p>
+            <a href="https://generalassemb.ly/">General Assembly</a>
           </div>
-          <div class="">
-            <div class="color">social icons</div>
-            <div class="color">social icons</div>
-            <div class="color">social icons</div>
+          <div class="info">
+            <h6>More Info</h6>
+            <a href="#">Contact</a>
+            <a href="#">Careers</a>
+          </div>
           </div>
         </div>
-      </div> <!-- Closes the main-content div -->
-    </div> <!-- Closes the container div -->
+      </div><!-- END CONTAINER DIV -->
   </body>
 </html>

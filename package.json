@@ -1,28 +1,27 @@
 {
-  "name": "creaturecreator",
+  "name": "unit3_project",
   "version": "1.0.0",
-  "description": "Draw and name your own or know mythological beasts!",
+  "description": "group project",
   "main": "server.js",
-  "dependencies": {
-    "ejs": "^2.6.1",
-    "express": "^4.16.3",
-    "mongoose": "^5.2.9",
-    "mongoose-unique-validator": "^2.0.1",
-    "paper": "^0.11.5"
-  },
-  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/acroak/creaturecreator.git"
+    "url": "git+https://github.com/austynheinlein/unit3_project.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/acroak/creaturecreator/issues"
+    "url": "https://github.com/austynheinlein/unit3_project/issues"
   },
-  "homepage": "https://github.com/acroak/creaturecreator#readme"
+  "homepage": "https://github.com/austynheinlein/unit3_project#readme",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "express": "^4.16.3",
+    "express-session": "^1.15.6",
+    "mongoose": "^5.2.4",
+    "npm-server": "0.0.1"
+  }
 }

@@ -1,55 +1,150 @@
-*, *:before, *:after {
-  box-sizing: inherit;
-}
-html {
-  box-sizing: border-box;
-}
-
-.container{
-  display: flex;
+/* beast
+/* * {
   border: 1px solid red;
-  flex-direction: column;
-}
+} */
 
-.main-content{
-  border: 1px solid orange;
-  margin: 5px;
-  width: 100%;
-
+span {
+  font-size: 14px;
+  font-weight: lighter;
 }
-.bar {
+.container, currentUserProperties {
   display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 0;
   align-items: center;
-  border: 3px solid salmon;
-  width: 100%;
-  padding: 20px;
-  position: sticky;
-  justify-content: center;
+  border: 1px solid red;
 }
-.gallery{
-  border: 1px solid yellow;
-  width: 80%;
-  margin: 0 auto;
+.header {
+  display: flex;
+  flex-direction: row;
   flex-wrap: wrap;
-  justify-content: center;
+  width: 100%;
+  height: auto;
+  margin: 0;
+  justify-content: space-between;
+  align-items: flex-start;
+  background-image: url('header.jpg');
+  background-size: cover;
+  background-position: center;
+  border: 2px solid orangered;
 }
-img{
-  max-height: 250px;
-  max-width: 200px;
-  padding: 5px;
-  background-color: gray;
-}
-.all-canvas-items{
-  border: 1px solid purple;
+
+.session {
   display: flex;
   flex-direction: column;
+  margin-right: 8px;
+  margin-left: 15px;
+  border: 1px solid orange;
+}
+.create-login {
+  display: flex;
+  flex-direction: row;
+  border: 3px solid yellow;
+}
+.user h2, .login h2 {
+  background: rgba(255,255,255,.5);
+  padding-bottom: 3px;
+  margin-bottom: 2px;
+  border: 3px solid gold;
+}
+.user h2 {
+  margin-right: 2px;
+}
+.login h2 {
+  margin-left: 2px;
+}
+.user, .login {
   text-align: center;
 }
-.all-canvas-items button {
-  width: auto;
-  padding: 15px;
+.user form, .login form{
+  display: flex;
+  flex-direction: column;
 }
-.color-picker{
+.logout {
+  display: flex;
+  justify-content: flex-end;
+}
+input:focus {
+  outline: none;
+}
+.login input[type=text], .user input[type=text], .login input[type=password], .user input[type=password] {
+  border: none;
+  margin: 1px;
+  padding-left: 5px;
+}
+.logout button {
+  width: 152px;
+}
+.login input[type=submit], .user input[type=submit], .logout button {
+  background: #313131;
+  color: white;
+  border: 1px solid #313131;
+  margin: 1px;
+}
+.login input[type=submit]:hover, .user input[type=submit]:hover, .logout button:hover {
+  background: #434343;
+  color: white;
+  border: 1px solid #eafb8a;
+}
+.new-beast button {
+  background: #313131;
+  color: white;
+  border: none;
+  padding: 2px;
+}
+.new-beast{
+  width: 100%;
+  background: #313131;
+  color: white;
+  border: none;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+h2 {
+  font-size: 15px;
+}
+
+
+
+/*********************************/
+/* footer */
+/*********************************/
+
+.footer {
+  width: 100%;
+  background: red;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.devs, .ga, .info {
+  display: flex;
+  flex-direction: column;
+  color: white;
+  padding: 20px 40px;
+}
+.devs a, .ga a, .info a {
+  color: black;
+}
+.devs a:hover, .ga a:hover, .info a:hover {
+  color: gray;
+}
+
+/*********************************/
+/* Canvas */
+/*********************************/
+.createFields {
+  border: 5px solid #313131;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  margin: 0;
+  width:auto;
 
 }
 .color{
@@ -104,7 +199,4 @@ canvas {
   background-color: #fffcff;
   border: 5px solid green;
   border-radius: 5px;
-}
-.footer{
-  text-align: center;
 }

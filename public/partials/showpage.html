@@ -1,0 +1,22 @@
+
+<div class="container">
+<!-- HEADER -->
+<!-- <div class= "header" ng-include="'partials/header.html'"></div> -->
+<!-- CREATE NEW PROP BUTTON -->
+<!-- <div class="new-prop" ng-include="'/partials/properties/create_beast.html'"></div> -->
+<div class="containDiv">
+  <h1>{{ctrl.beast.name}}</h1>
+  <ul>
+    <div class="beast-data">
+      <li class="imgLine">{{ctrl.beast.image}}</li>
+      <li>Description: {{ctrl.beast.description}}</li>
+    </div>
+    </ul>
+    <div class="showBtns">
+      <button ng-if="ctrl.loggedIn" ng-click="ctrl.likeBeast(ctrl.beast)">Like Beast</button>
+      <button ng-if="ctrl.loggedIn" ng-click="ctrl.dislikeBeast(ctrl.beast)">Unlike Beast</button>
+      <button ng-click="ctrl.toggleShow()">Return Home</button>
+    </div>
+
+
+</div>

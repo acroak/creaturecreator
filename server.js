@@ -1,26 +1,45 @@
 const express = require('express');
 const app = express();
-const port = 3000;
-
-const mongoose = require('mongoose');
-
-mongoose.connect('mongodb://localhost:27017/meancrud', {useNewUrlParser: true});
-mongoose.connection.once('open', ()=>{
-    console.log('connected to mongoose...');
-});
-
-app.use(express.json());
-app.use(express.static('public'));
-
-//CONTROLLERS
-// const todosController= require('./controllers/todos.js');
-// app.use('/todos', todosController);
+const mongoose = require('mongoose')
+const mongoUri = process.env.MONGODB_URI || 'mongodb://localhost:27017/creature_creator';
+ mongoose.connect(mongoUri);
+ const session = require('express-session');
+ const bcryptjs = require('bcryptjs')
 
 
-// app.get('/', ( req, res )=>{
-//   res.render('index.ejs')
-// })
+ // JSON middleware
+ app.use(express.json());
 
-app.listen(port, ()=>{
-    console.log('listening on', port);
-});
+ // Public middleware
+ app.use(express.static("public"));
+
+
+ // Session middleware
+ app.use(session({
+     secret:'feedmeseymour',
+     resave: false,
+     saveUninitialized: false
+ }));
+
+ /// req.body middleware
+ app.use(express.urlencoded({extended:false}));
+
+ // controllers
+
+ // beasts controller
+ const beastsController = require('./controllers/beasts.js');
+ app.use('/beasts', beastsController);
+
+ //users controller
+ const usersController = require('./controllers/users.js');
+ app.use('/users', usersController);
+
+ //sessions controller
+ const sessionsController = require('./controllers/sessions.js');
+ app.use('/sessions', sessionsController);
+
+ const port = process.env.PORT || 3000;
+ app.listen(port);
+ console.log('---------------------------------');
+ console.log('Server running on port: ' + port);
+ console.log('---------------------------------');

@@ -1,13 +1,49 @@
 var path;
-var color = 'black';
-var doodleData = null;
-var width = 5;
-var share = null;
+var stroke_color = 'black';
+var canvasData = null;
+var stroke_width = 5;
+
+
+$('#red').click(function() {
+  stroke_color = 'red';
+});
+
+$('#orange').click(function() {
+  stroke_color = 'orange';
+});
+
+$('#yellow').click(function() {
+  stroke_color = 'yellow';
+});
+
+$('#green').click(function() {
+  stroke_color = 'green';
+});
+
+$('#blue').click(function() {
+  stroke_color = 'blue';
+});
+
+$('#purple').click(function() {
+  stroke_color = 'purple';
+});
+
+$('#pink').click(function() {
+  stroke_color = 'hotpink';
+});
+
+$('#black').click(function() {
+  stroke_color = 'black';
+});
+
+$('#white').click(function() {
+  stroke_color = '#fffcff';
+})
 
 function onMouseDown(event) {
   path = new Path();
-  path.strokeColor = color;
-  path.strokeWidth = width;
+  path.strokeColor = stroke_color;
+  path.strokeWidth = stroke_width;
 }
 
 function onMouseDrag(event) {
@@ -35,10 +71,10 @@ function post(path, parameters) {
 }
 
 $('#save-button').click(function() {
-  share = $('input[name="share"]:checked').val();
-  doodleData = project.exportSVG({ asString: true });
-  console.log(doodleData);
-  post('/doodles/', { doodle: doodleData, share: share, user: id });
+  //share = $('input[name="share"]:checked').val();
+  canvasData = project.exportSVG({ asString: true });
+  console.log(canvasData);
+  // post('/doodles/', { doodle: canvasData, share: share, user: id });
   console.log("The user id is:", id);
 });
 
@@ -50,54 +86,20 @@ $('#undo-button').click(function() {
   path.clear();
 });
 
-$('#red').click(function() {
-  color = 'red';
+$('#width-increase').click(function() {
+  stroke_width += 1;
+  console.log('increased', stroke_width);
 });
 
-$('#orange').click(function() {
-  color = 'orange';
-});
-
-$('#yellow').click(function() {
-  color = 'yellow';
-});
-
-$('#green').click(function() {
-  color = 'green';
-});
-
-$('#blue').click(function() {
-  color = 'blue';
-});
-
-$('#purple').click(function() {
-  color = 'purple';
-});
-
-$('#pink').click(function() {
-  color = 'hotpink';
-});
-
-$('#black').click(function() {
-  color = 'black';
-});
-
-$('#white').click(function() {
-  color = '#fffcff';
-})
-
-$('#incr-size').click(function() {
-  width+=2;
-});
-
-$('#decr-size').click(function() {
-  if (width <= 1) {
-    width = 1;
+$('#width-decrease').click(function() {
+  if (stroke_width <= 1) {
+    stroke_width = 1;
   } else {
-    width-=2;
+    stroke_width -= 1;
   }
+  console.log('increased', stroke_width);
 });
 
 $('#reset-size').click(function() {
-  width = 5;
+  stroke_width = 5;
 });
