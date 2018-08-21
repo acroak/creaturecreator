@@ -1,24 +1,67 @@
+//**********************************Dependencies********************************
 const express = require('express');
 const app = express();
+const port = process.env.PORT || 3000;
+
 const mongoose = require('mongoose');
+const mongoUri =  process.env.MONGODB_URI || 'mongodb://localhost:27017/beast_app';
+
 const methodOverride = require('method-override');
-// const Beast = require('./models/beasts_model.js')
+
+const session = require('express-session');
+
+// const bcrypt = require('bcrypt');
+
+//***************************Schema Dependencies********************************
+const Beasts = require('./models/beasts_model.js');
+const User = require('./models/users.js');
 
 
-
-
-app.use(express.urlencoded({extended:true}));
+//*********************************Middleware***********************************
+app.use(express.urlencoded({ extended: false }));
+app.use(express.json());
+app.use(express.static('public'))
 app.use(methodOverride('_method'));
+app.use(session({
+  secret: "feedmeseymour", //some random string
+  resave: false,
+  saveUninitialized: false
+}));
 
-mongoose.connect('mongodb://localhost:27017/basiccrud');
-mongoose.connection.once('open', ()=> {
-    console.log('connected to mongo');
-});
+//*********************************Controllers**********************************
 
-const beastsController = require('./controllers/beasts_controller.js');
+const beastsController = require('./controllers/beasts.js');
 app.use('/beasts', beastsController);
 
+const userController = require('./controllers/users.js')
+app.use('/users', userController);
 
-app.listen(3000, ()=>{
-  console.log('listening on 3000');
-})
+const sessionsController = require('./controllers/sessions.js');
+app.use('/sessions', sessionsController);
+
+//************************************GET************************************
+// REDIRECT TO INDEX
+app.get('/',(req,res)=>{
+  res.redirect('/beasts')
+});
+
+// GET INDEX
+app.get('/beasts', (req,res)=>{
+  Plants.find({},(err, allPlants)=>{
+    res.render('index.ejs',{
+      currentUser: req.session.currentUser,
+      Plants: allPlants
+
+    });
+  }).sort({name: 1})
+});
+
+// CONNECTIONS
+app.listen(port, ()=>{
+  console.log('Listening...');
+});
+
+mongoose.connect(mongoUri, {useNewUrlParser: true});
+mongoose.connection.on('open', ()=>{
+  console.log('mongoose!!!!!!!!!!!!!!!!!!!!');
+});

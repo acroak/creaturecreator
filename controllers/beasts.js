@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const Beast = require('../models/beasts_model.js')
+const Beasts = require('../models/beasts_model.js')
 
 //Create New Route
 router.get('/new', (req, res)=>{
@@ -9,23 +9,29 @@ router.get('/new', (req, res)=>{
 
 //Create Route
 router.post('/', (req, res)=>{
-    Beast.create(req.body, (error, createdBeast)=>{
+    Beasts.create(req.body, (error, createdBeast)=>{
       res.redirect('/beasts')
     });
 });
 
 //Index Route (find all beasts)
 router.get('/', (req, res)=>{
-    Beast.find({}, (error, allBeasts)=>{
+    Beasts.find({}, (error, allBeasts)=>{
         res.render('index.ejs', {
             beasts: allBeasts
         });
     });
 });
 
+router.get('/all', (req, res)=>{
+    Beasts.find({}, (error, allBeasts)=>{
+        res.send(req.body);
+    });
+});
+
 //Show Route
 router.get('/:id', (req, res)=>{
-    Beast.findById(req.params.id, (err, beast)=>{
+    Beasts.findById(req.params.id, (err, beast)=>{
         res.render('show.ejs',{
           beast : beast
         });
@@ -34,14 +40,14 @@ router.get('/:id', (req, res)=>{
 
 //Delete Route
 router.delete('/:id', (req, res)=>{
-  Beast.findByIdAndRemove(req.params.id, (err, data)=>{
+  Beasts.findByIdAndRemove(req.params.id, (err, data)=>{
    res.redirect('/beasts');//redirect back to beasts index
   });
 });
 
 //Edit by ID, grab info based on id and populate fields
 router.get('/:id/edit', (req, res)=>{
-    Beast.findById(req.params.id, (err, foundBeast)=>{ //find the beast
+    Beasts.findById(req.params.id, (err, foundBeast)=>{ //find the beast
         res.render(
     		'edit.ejs',
     		{
@@ -53,7 +59,7 @@ router.get('/:id/edit', (req, res)=>{
 
 //PUT route to submit the edits
 router.put('/:id', (req, res)=>{
-  Beast.findByIdAndUpdate(req.params.id, req.body, {new:true}, (err, updatedModel)=>{
+  Beasts.findByIdAndUpdate(req.params.id, req.body, {new:true}, (err, updatedModel)=>{
       res.redirect('/beasts');
   });
 });
