@@ -3,6 +3,12 @@
   <head>
     <meta charset="utf-8">
     <title></title>
+    <!-- Required to convert named colors to RGB -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/canvg/1.4/rgbcolor.min.js"></script>
+    <!-- Optional if you want blur -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/stackblur-canvas/1.4.1/stackblur.min.js"></script>
+    <!-- Main canvg code -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/canvg/dist/browser/canvg.min.js"></script>
   </head>
   <body>
     <nav>
@@ -11,12 +17,10 @@
     <ul>
 
       <li>
-          <% for(let i = 0; i < 1; i++){ %>
-            
-          <% } %>
-        <%=beast.beastImg; %>
+
 
         <h1>EVENTUAL IMAGE</h1>
+        <img src="<%= beast.beastImg; %>" alt="">
           Name: <%=beast.name; %>
           Description: <%=beast.description; %>
           tags: <%=beast.tags; %>
@@ -28,5 +32,21 @@
     <form action="/beasts/<%=beast.id; %>?_method=DELETE" method="POST">
        <input type="submit" value="DELETE"/>
    </form>
+
+
+   <script type="text/javascript">
+window.onload = function() {
+
+  console.log(<%= beast.beastImg; %>)
+  //load '../path/to/your.svg' in the canvas with id = 'canvas'
+  canvg('canvas', '../path')
+
+  //load a svg snippet in the canvas with id = 'drawingArea'
+  canvg(document.getElementById('drawingArea'), '<svg>...</svg>')
+
+  //ignore mouse events and animation
+  canvg('canvas', 'file.svg', { ignoreMouse: true, ignoreAnimation: true })
+}
+</script>
   </body>
 </html>

@@ -72,27 +72,25 @@ function post(path, parameters) {
 }
 
 $('#save-button').click(function() {
-console.log('SAVE BTN CLICKED');
-  canvasData = project.exportSVG({ asString: true });
+  canvasData = "data:image/svg+xml;utf8," + encodeURIComponent(paper.project.exportSVG({asString:true}));
   createdName = $("#name").val();
   createdDescript = $("#description").val();
   createdTags = $("#tags").val();
   console.log(canvasData);
   post('/beasts/', { beastImg: canvasData, name: createdName, description: createdDescript, tags: createdTags});
   event.preventDefault();
-
 });
 
-$('#clear-button').click(function() {
+$('#clear').click(function() {
   project.clear();
 });
 
-$('#undo-button').click(function() {
+$('#undo').click(function() {
   path.clear();
 });
 
 $('#width-increase').click(function() {
-  stroke_width += 1;
+  stroke_width += 2;
   console.log('increased', stroke_width);
 });
 
@@ -100,7 +98,7 @@ $('#width-decrease').click(function() {
   if (stroke_width <= 1) {
     stroke_width = 1;
   } else {
-    stroke_width -= 1;
+    stroke_width -= 2;
   }
   console.log('increased', stroke_width);
 });

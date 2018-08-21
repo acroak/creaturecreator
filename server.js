@@ -10,7 +10,7 @@ const methodOverride = require('method-override');
 
 const session = require('express-session');
 
-// const bcrypt = require('bcrypt');
+const bcrypt = require('bcrypt');
 
 //***************************Schema Dependencies********************************
 const Beasts = require('./models/beasts_model.js');
@@ -23,7 +23,7 @@ app.use(express.json());
 app.use(express.static('public'))
 app.use(methodOverride('_method'));
 app.use(session({
-  secret: "feedmeseymour", //some random string
+  secret: "hedgehogsandapples", //some random string
   resave: false,
   saveUninitialized: false
 }));
@@ -47,10 +47,10 @@ app.get('/',(req,res)=>{
 
 // GET INDEX
 app.get('/beasts', (req,res)=>{
-  Plants.find({},(err, allPlants)=>{
+  Beastss.find({},(err, allBeasts)=>{
     res.render('index.ejs',{
       currentUser: req.session.currentUser,
-      Plants: allPlants
+      Beasts: allBeasts
 
     });
   }).sort({name: 1})

@@ -5,6 +5,7 @@
         <title></title>
     </head>
     <body>
+  
       <nav>
         <a href="/beasts/new">Create a New Creature</a>
         <ul>
@@ -14,27 +15,38 @@
           <li>
               <a href="/users/new">Register</a>
           </li>
+
           <li>
               <form action="/sessions?_method=DELETE" method="POST">
                   <input type="submit" value="Logout"/>
               </form>
           </li>
+
         </ul>
       </nav>
-        <div class="">
+
           <ul>
             <% for(let i = 0; i < beasts.length; i++){ %>
               <a href="/beasts/<%=beasts[i].id; %>">
-                <%= beasts[i].beastImg %>
                 <li>
-                  <%= beasts[i].name %>
-                    <br>
-                  <%= beasts[i].description %>
+                  <img src="<%= beasts[i].beastImg %>" alt="<%= beasts[i].name %>">
                 </li>
+
+                  <li>
+                    <%= beasts[i].name %>
+                      <br>
+
+                    <%= beasts[i].description %>
+
+                  </li>
+                  </a>
                   <% } %>
-              </a>
+
           </ul>
         </div>
+
+
+
 
     </body>
 </html>

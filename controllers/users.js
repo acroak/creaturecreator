@@ -7,11 +7,16 @@ router.get('/new', (req, res)=>{
     res.render('users/new.ejs');
 });
 
+//encrpt password, redirect home
 router.post('/', (req, res)=>{
-    req.body.password = bcrypt.hashSync(req.body.password, bcrypt.genSaltSync(10));
-    User.create(req.body, (err, createdUser)=>{
-        res.redirect('/beasts');
+    User.findOne({ username: req.body.username },(err, foundUser) => {
+      console.log(foundUser);
+        if( bcrypt.compareSync(req.body.password, foundUser.password) ){
+            req.session.currentUser = foundUser;
+            res.redirect('/');
+        } else {
+            res.send('wrong password');
+        }
     });
 });
-
 module.exports = router;

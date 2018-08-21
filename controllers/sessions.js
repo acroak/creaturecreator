@@ -14,15 +14,17 @@ router.delete('/', (req, res)=>{
     })
 });
 
+//Check Password
 router.post('/', (req, res)=>{
-    User.findOne({username:req.body.username}, (err, foundUser)=>{
-        if(bcrypt.compareSync(req.body.password, foundUser.password)){
+    User.findOne({ username: req.body.username },(err, foundUser) => {
+      console.log(foundUser);
+        if( bcrypt.compareSync(req.body.password, foundUser.password) ){
             req.session.currentUser = foundUser;
-            res.redirect('/beasts');
+            res.redirect('/');
         } else {
-            res.send('wrong password');
+            res.redirect('/sessions/new');
         }
-    })
-})
+    });
+});
 
 module.exports = router;
