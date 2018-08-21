@@ -77,8 +77,9 @@ console.log('SAVE BTN CLICKED');
   canvasData = project.exportSVG({ asString: true });
   createdName = $("#name").val();
   createdDescript = $("#description").val();
+  createdTags = $("#tags").val();
   console.log(canvasData);
-  //post('/beasts', { beastImg: canvasData, name: createdName, description: createdDescript});
+  post('/beasts/', { beastImg: canvasData, name: createdName, description: createdDescript, tags: createdTags});
 
 });
 
