@@ -25,6 +25,7 @@
           <ul>
             <% for(let i = 0; i < beasts.length; i++){ %>
               <a href="/beasts/<%=beasts[i].id; %>">
+                <%= beasts[i].beastImg %>
                 <li>
                   <%= beasts[i].name %>
                     <br>

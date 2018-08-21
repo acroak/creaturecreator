@@ -16,8 +16,8 @@
 
   </head>
   <body>
-    <form class="" action="/beasts" method="POST">
-      <p>canvas will be here</p>
+
+
       <div class="canvas-container">
         <canvas id="newCanvas"></canvas>
       </div>
@@ -39,17 +39,17 @@
         <button type="button" name="button" id="width-decrease">Brush -</button>
       </div>
 
+      <form class="" action="/beasts" method="POST">
         <br/>
       Name:
-      <input type="text" name="name" value="name">
+      <input type="text" name="name" value="name" id="name">
         <br/>
       Description:
-      <textarea name="description" rows="8" cols="80"></textarea>
+      <textarea name="description" rows="8" cols="80" id="description"></textarea>
         <br/>
       Tags:
-      <input type="text" name="tags" value="tags">
+      <input type="text" name="tags" value="tags" id="tags">
         <br/>
-      <input type="submit" name="" value="Submit">
       <button id="save-button">Save</button>
     </form>
     <a href="/beasts"><button type="button" name="button">Home</button></a>

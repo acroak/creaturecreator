@@ -64,7 +64,6 @@ function post(path, parameters) {
         field.attr("type", "hidden");
         field.attr("name", key);
         field.attr("value", value);
-
         form.append(field);
     });
 
@@ -80,6 +79,7 @@ console.log('SAVE BTN CLICKED');
   createdTags = $("#tags").val();
   console.log(canvasData);
   post('/beasts/', { beastImg: canvasData, name: createdName, description: createdDescript, tags: createdTags});
+  event.preventDefault();
 
 });
 
