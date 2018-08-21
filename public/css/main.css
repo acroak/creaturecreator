@@ -1,4 +1,59 @@
 *{
-  background-color: pink;
-  color: pink;
+  color:black;
+}
+.canvas-container{
+  border: 2px solid black;
+}
+#color-picker {
+  margin: 5px auto;
+  display: flex;
+  width: 450px;
+  height: 50px;
+}
+
+.color {
+  margin: 5px;
+  width: 40px;
+  height: 40px;
+  border-radius: 3px;
+}
+
+.color:hover {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 100, 0.2), 0 6px 20px 0 rgba(0, 0, 100, 0.19);
+}
+
+#red {
+  background-color: red;
+}
+
+#orange {
+  background-color: orange;
+}
+
+#yellow {
+  background-color: yellow;
+}
+
+#green {
+  background-color: green;
+}
+
+#blue {
+  background-color: blue;
+}
+
+#purple {
+  background-color: purple;
+}
+
+#pink {
+  background-color: hotpink;
+}
+
+#black {
+  background-color: black;
+}
+
+#white {
+  background-color: #fffcff;
 }
