@@ -31,18 +31,30 @@ router.get('/', async(req, res)=>{
     });
 });
 
-router.get('/all', async(req, res)=>{
-    Beasts.find({}, (error, allBeasts)=>{
-        res.send(req.body);
+//get beasts made by current user
+router.get('/gallery/mine', (req, res)=>{
+    if (req.session.currentUser){
+      var user = req.session.currentUser.username
+    Beasts.find({artist: user}, (error, myBeasts)=>{
+        res.render('./users/gallery.ejs', {
+          beasts: myBeasts,
+          currentUser: req.session.currentUser,
+          user: Users
+        });
     });
+  } else {
+    res.send('login')
+  }
 });
+
 
 //Show Route
 router.get('/:id', async(req, res)=>{
     Beasts.findById(req.params.id, (err, beast)=>{
         res.render('show.ejs',{
           beast : beast,
-          currentUser: req.session.currentUser
+          currentUser: req.session.currentUser,
+          Users: Users
         });
     });
 });
@@ -55,53 +67,39 @@ router.delete('/:id', async(req, res)=>{
 });
 
 //POST for Comments
-router.post('/:entryId/comment', async(req, res) => {
+router.post('/:beastId/comment', async(req, res) => {
     if (req.session.currentUser) {
         req.body.username = {id: req.session.currentUser._id, username: req.session.currentUser.username}
-        Beasts.findByIdAndUpdate(req.params.entryId, {$push: {comments: req.body}}, (err, result) => {
+        Beasts.findByIdAndUpdate(req.params.beastId, {$push: {comments: req.body}}, (err, result) => {
             if (err) {
                 console.log('ERR: cannot post comment');
 
             } else {
-                res.redirect('/beasts/' + req.params.entryId)
+                res.redirect('/beasts/' + req.params.beastId)
             }
         })
     }
 })
 
+//Edit Rout
+router.get('/:id/edit',(req,res)=>{
+  Beasts.findById({_id: req.params.id}, (err, beast)=>{
+    res.render('edit.ejs', {
+      currentUser: req.session.currentUser,
+      beast: beast
+    });
+  });
+});
 
 
-router.get('/:id', (req, res) => {
-  let currentUser = null;
-  let artist = false;
-  let foundFave = false;
-  Entries.findById(req.params.entryId, (err, foundBeast) => {
-    if (req.session.currentUser) {
-      currentUser = req.session.currentUser;
-        if (foundBeast.artist === req.session.currentUser._id) {
-          artist = true;
-          res.render('show.ejs', {
-              currentUser: req.session.currentUser,
-              currentBeast: foundBeast,
-              artist: artist,
-              favorite: foundFave,
-              moment: moment
-          })
-        }else {
-            res.render('show.ejs', {
-                currentUser: req.session.currentUser,
-                currentBeast: foundBeast,
-                artist: artist,
-            })
-        }
-      }
-  })
-})
 //PUT route to submit the edits
 router.put('/:id', async(req, res)=>{
   Beasts.findByIdAndUpdate(req.params.id, req.body, {new:true}, (err, updatedModel)=>{
       res.redirect('/beasts');
   });
 });
+
+
+
 
 module.exports = router;

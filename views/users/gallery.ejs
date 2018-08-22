@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <%_include ../partials/head.ejs %>
+  </head>
+  <body>
+    <%_include ../partials/nav.ejs %>
+
+    <h1>Gallery of <%= user.username %></h1>
+    <ul>
+      <% for(let i = 0; i < beasts.length; i++){ %>
+        <li>
+          <a href="/beasts/<%= beasts[i].id %>">
+            <img src="<%= beasts[i].beastImg %>" alt="<%= beasts[i].name %>">
+          </a>
+            <br>
+          <%= beasts[i].name %>
+            <br>
+          <%= beasts[i].description %>
+            <br>
+          <%= beasts[i].artist %>
+        </li>
+      <% } %>
+    </ul>
+
+    <%_include ../partials/footer.ejs %>
+  </body>
+</html>

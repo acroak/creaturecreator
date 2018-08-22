@@ -1,15 +1,13 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
-    <meta charset="utf-8">
-    <title></title>
+    <%_include ../views/partials/head.ejs %>
   </head>
   <body>
 
-<%_include ../views/partials/nav.ejs %>
+    <%_include ../views/partials/nav.ejs %>
 
     <ul>
-
       <li>
         Name: <%=beast.name; %> By: <%=beast.artist; %>
         <br>
@@ -19,10 +17,12 @@
         <br>
           tags: <%=beast.tags; %>
       </li>
-
     </ul>
-    <% if (currentUser.username === beast.artist ) { %>
-    <a href="/beasts/<%=beast.id; %>/edit"><button type="button" name="button">Edit</button></a>
+
+    <% if (currentUser != undefined ) { %>
+      <% if (currentUser.username === beast.artist ) { %>
+      <a href="/beasts/<%=beast.id; %>/edit"><button type="button" name="button">Edit</button></a>
+      <% } %>
     <% } %>
 
    <div class="">

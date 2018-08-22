@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
     <head>
-        <meta charset="utf-8">
-        <title></title>
+        <%_include ../views/partials/head.ejs %>
     </head>
     <body>
 
@@ -21,7 +20,8 @@
                     <%= beasts[i].description %>
                     </a>
                       <br>
-                    <%= beasts[i].artist %>
+                      <a href="/users/<%= beasts[i].artist %>/gallery"><%= beasts[i].artist %></a>
+
 
                   </li>
 

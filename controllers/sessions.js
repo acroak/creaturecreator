@@ -6,7 +6,9 @@ const bcrypt = require('bcrypt');
 
 //Log in New SESSION
 router.get('/new', (req, res)=>{
-    res.render('sessions/new.ejs');
+    res.render('sessions/new.ejs', {
+      currentUser: req.session.currentUser
+    });
 });
 
 //Log Off
@@ -20,12 +22,17 @@ router.delete('/', (req, res)=>{
 router.post('/', (req, res)=>{
     User.findOne({ username: req.body.username },(err, foundUser) => {
       // console.log(foundUser);
+      if (foundUser){
         if( bcrypt.compareSync(req.body.password, foundUser.password) ){
             req.session.currentUser = foundUser;
             res.redirect('/');
         } else {
             res.redirect('/sessions/new');
         }
+      } else {
+        res.send('User or password not found')
+      }
+
     });
 });
 
