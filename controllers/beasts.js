@@ -4,7 +4,10 @@ const Beasts = require('../models/beasts_model.js')
 
 //Create New Route
 router.get('/new', (req, res)=>{
-    res.render('new.ejs');
+    res.render('new.ejs',{
+      currentUser: req.session.currentUser,
+      Beasts : Beasts
+    });
 });
 
 //Create Route
@@ -18,7 +21,8 @@ router.post('/', (req, res)=>{
 router.get('/', (req, res)=>{
     Beasts.find({}, (error, allBeasts)=>{
         res.render('index.ejs', {
-            beasts: allBeasts
+            beasts: allBeasts,
+            currentUser: req.session.currentUser
         });
     });
 });
@@ -33,7 +37,8 @@ router.get('/all', (req, res)=>{
 router.get('/:id', (req, res)=>{
     Beasts.findById(req.params.id, (err, beast)=>{
         res.render('show.ejs',{
-          beast : beast
+          beast : beast,
+          currentUser: req.session.currentUser
         });
     });
 });
@@ -51,7 +56,8 @@ router.get('/:id/edit', (req, res)=>{
         res.render(
     		'edit.ejs',
     		{
-    			beast: foundBeast //pass in found beast
+    			beast: foundBeast, //pass in found beast
+          currentUser: req.session.currentUser
     		}
     	);
     });

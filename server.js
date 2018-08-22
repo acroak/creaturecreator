@@ -47,13 +47,13 @@ app.get('/',(req,res)=>{
 
 // GET INDEX
 app.get('/beasts', (req,res)=>{
-  Beastss.find({},(err, allBeasts)=>{
+  Beasts.find({},(err, allBeasts)=>{
     res.render('index.ejs',{
       currentUser: req.session.currentUser,
       Beasts: allBeasts
 
     });
-  }).sort({name: 1})
+  })//.sort({name: 1})
 });
 
 // CONNECTIONS

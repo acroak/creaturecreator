@@ -5,7 +5,11 @@
         <title></title>
     </head>
     <body>
-  
+      <% if (currentUser) {%>
+        <h1>hello</h1>
+        <% } else {%>
+          <h1>LOG IN</h1>
+      <%} %>
       <nav>
         <a href="/beasts/new">Create a New Creature</a>
         <ul>
