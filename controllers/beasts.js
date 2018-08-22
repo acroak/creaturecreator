@@ -3,7 +3,7 @@ const router = express.Router();
 const Beasts = require('../models/beasts_model.js')
 
 //Create New Route
-router.get('/new', (req, res)=>{
+router.get('/new', async(req, res)=>{
     res.render('new.ejs',{
       currentUser: req.session.currentUser,
       Beasts : Beasts
@@ -11,14 +11,14 @@ router.get('/new', (req, res)=>{
 });
 
 //Create Route
-router.post('/', (req, res)=>{
+router.post('/', async(req, res)=>{
     Beasts.create(req.body, (error, createdBeast)=>{
       res.redirect('/beasts')
     });
 });
 
 //Index Route (find all beasts)
-router.get('/', (req, res)=>{
+router.get('/', async(req, res)=>{
     Beasts.find({}, (error, allBeasts)=>{
         res.render('index.ejs', {
             beasts: allBeasts,
@@ -27,14 +27,14 @@ router.get('/', (req, res)=>{
     });
 });
 
-router.get('/all', (req, res)=>{
+router.get('/all', async(req, res)=>{
     Beasts.find({}, (error, allBeasts)=>{
         res.send(req.body);
     });
 });
 
 //Show Route
-router.get('/:id', (req, res)=>{
+router.get('/:id', async(req, res)=>{
     Beasts.findById(req.params.id, (err, beast)=>{
         res.render('show.ejs',{
           beast : beast,
@@ -44,14 +44,14 @@ router.get('/:id', (req, res)=>{
 });
 
 //Delete Route
-router.delete('/:id', (req, res)=>{
+router.delete('/:id', async(req, res)=>{
   Beasts.findByIdAndRemove(req.params.id, (err, data)=>{
    res.redirect('/beasts');//redirect back to beasts index
   });
 });
 
 //POST for Comments
-router.post('/:entryId/comment', (req, res) => {
+router.post('/:entryId/comment', async(req, res) => {
     if (req.session.currentUser) {
         // format the comment object
         req.body.date = new Date();
@@ -70,7 +70,7 @@ router.post('/:entryId/comment', (req, res) => {
 
 
 //Edit by ID, grab info based on id and populate fields
-router.get('/:id/edit', (req, res)=>{
+router.get('/:id/edit', async(req, res)=>{
     Beasts.findById(req.params.id, (err, foundBeast)=>{ //find the beast
         res.render(
     		'edit.ejs',
@@ -83,7 +83,7 @@ router.get('/:id/edit', (req, res)=>{
 });
 
 //PUT route to submit the edits
-router.put('/:id', (req, res)=>{
+router.put('/:id', async(req, res)=>{
   Beasts.findByIdAndUpdate(req.params.id, req.body, {new:true}, (err, updatedModel)=>{
       res.redirect('/beasts');
   });

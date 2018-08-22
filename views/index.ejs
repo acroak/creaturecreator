@@ -5,30 +5,8 @@
         <title></title>
     </head>
     <body>
-      <% if (currentUser) {%>
-        <h1>hello</h1>
-        <% } else {%>
-          <h1>LOG IN</h1>
-      <%} %>
-      <nav>
-        <a href="/beasts/new">Create a New Creature</a>
-        <ul>
-          <li>
-              <a href="/sessions/new">Log In</a>
-          </li>
-          <li>
-              <a href="/users/new">Register</a>
-          </li>
 
-          <li>
-              <form action="/sessions?_method=DELETE" method="POST">
-                  <input type="submit" value="Logout"/>
-              </form>
-          </li>
-
-        </ul>
-      </nav>
-
+<%_include ../views/partials/nav.ejs %>
           <ul>
             <% for(let i = 0; i < beasts.length; i++){ %>
               <a href="/beasts/<%=beasts[i].id; %>">
@@ -49,7 +27,7 @@
           </ul>
         </div>
 
-
+        <%_include ../views/partials/footer.ejs %>
 
 
     </body>

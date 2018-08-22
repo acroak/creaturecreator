@@ -5,20 +5,12 @@
     <title></title>
   </head>
   <body>
-    <% if (currentUser) {%>
-      <h1>hello</h1>
-      <% } else {%>
-        <h1>LOG IN</h1>
-    <%} %>
-    <nav>
-    <a href="/beasts">HOME</a>
-    </nav>
+
+<%_include ../views/partials/nav.ejs %>
+
     <ul>
 
       <li>
-
-
-        <h1>EVENTUAL IMAGE</h1>
         <img src="<%= beast.beastImg; %>" alt="">
           Name: <%=beast.name; %>
           Description: <%=beast.description; %>
@@ -28,9 +20,7 @@
     </ul>
     <a href="/beasts/<%=beast.id; %>/edit"><button type="button" name="button">Edit</button></a>
 
-    <form action="/beasts/<%=beast.id; %>?_method=DELETE" method="POST">
-       <input type="submit" value="DELETE"/>
-   </form>
+
    <div class="">
       <h5>Comments</h5>
       <% for(let i=0; i < beast.comments.length; i++) { %>
@@ -57,5 +47,6 @@
       </form>
   <% } %>
 
+  <%_include ../views/partials/footer.ejs %>
   </body>
 </html>

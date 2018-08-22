@@ -6,6 +6,7 @@ const beastSchema = new mongoose.Schema({
   name: String,
   description: String,
   tags: String,
+  artist: String,
   comments:[{
     comment: String,
     commentor: String
