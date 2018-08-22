@@ -5,7 +5,11 @@ const beastSchema = new mongoose.Schema({
   beastImg: String,
   name: String,
   description: String,
-  tags: String
+  tags: String,
+  comments:[{
+    comment: String,
+    commentor: String
+  }]
 });
 
 

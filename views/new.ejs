@@ -16,7 +16,11 @@
 
   </head>
   <body>
-
+    <% if (currentUser) {%>
+      <h1>hello</h1>
+      <% } else {%>
+        <h1>LOG IN</h1>
+    <%} %>
 
       <div class="canvas-container">
         <canvas id="newCanvas"></canvas>

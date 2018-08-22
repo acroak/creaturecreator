@@ -5,6 +5,11 @@
         <title>Creature Creator</title>
     </head>
     <body>
+      <% if (currentUser) {%>
+        <h1>hello</h1>
+        <% } else {%>
+          <h1>LOG IN</h1>
+      <%} %>
         <h1>Edit</h1>
         <form action="/beasts/<%=beast.id%>?_method=PUT" method="POST">
           <h1>EVENTUAL IMAGE</h1>

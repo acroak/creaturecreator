@@ -50,6 +50,25 @@ router.delete('/:id', (req, res)=>{
   });
 });
 
+//POST for Comments
+router.post('/:entryId/comment', (req, res) => {
+    if (req.session.currentUser) {
+        // format the comment object
+        req.body.date = new Date();
+        req.body.username = {id: req.session.currentUser._id, username: req.session.currentUser.username}
+        // Push it onto the entries comment property
+        Beasts.findByIdAndUpdate(req.params.entryId, {$push: {comments: req.body}}, (err, result) => {
+            if (err) {
+                console.log('Error trying to update comment');
+
+            } else {
+                res.redirect('/beasts/' + req.params.entryId)
+            }
+        })
+    }
+})
+
+
 //Edit by ID, grab info based on id and populate fields
 router.get('/:id/edit', (req, res)=>{
     Beasts.findById(req.params.id, (err, foundBeast)=>{ //find the beast

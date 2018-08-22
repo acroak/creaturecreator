@@ -3,14 +3,13 @@
   <head>
     <meta charset="utf-8">
     <title></title>
-    <!-- Required to convert named colors to RGB -->
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/canvg/1.4/rgbcolor.min.js"></script>
-    <!-- Optional if you want blur -->
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/stackblur-canvas/1.4.1/stackblur.min.js"></script>
-    <!-- Main canvg code -->
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/canvg/dist/browser/canvg.min.js"></script>
   </head>
   <body>
+    <% if (currentUser) {%>
+      <h1>hello</h1>
+      <% } else {%>
+        <h1>LOG IN</h1>
+    <%} %>
     <nav>
     <a href="/beasts">HOME</a>
     </nav>
@@ -32,21 +31,31 @@
     <form action="/beasts/<%=beast.id; %>?_method=DELETE" method="POST">
        <input type="submit" value="DELETE"/>
    </form>
+   <div class="">
+      <h5>Comments</h5>
+      <% for(let i=0; i < beast.comments.length; i++) { %>
+          <div class="">
+              <p>
+                  <%=beast.comments[i].comment%>
+              </p>
+              <div class="">
+                  <!-- <a href="/users/<%=beast.comments[i].commentor%>"> -->
+                  Commented by:  <%=beast.comments[i].commentor%>
+                  <!-- </a> -->
 
+              </div>
+          </div>
+      <% } %>
+  </div>
 
-   <script type="text/javascript">
-window.onload = function() {
+   <% if (currentUser) { %>
+      <form class="" action="/beasts/<%=beast._id%>/comment" method="POST">
+          <label for="comment">Post a comment</label>
+          <textarea class="" name="comment" id="comment" cols="30" rows="3"></textarea>
+          <input type="text" name="commentor" value="<%= currentUser.username %>" style="display:none">
+          <input class="" type="submit" value="Post Comment">
+      </form>
+  <% } %>
 
-  console.log(<%= beast.beastImg; %>)
-  //load '../path/to/your.svg' in the canvas with id = 'canvas'
-  canvg('canvas', '../path')
-
-  //load a svg snippet in the canvas with id = 'drawingArea'
-  canvg(document.getElementById('drawingArea'), '<svg>...</svg>')
-
-  //ignore mouse events and animation
-  canvg('canvas', 'file.svg', { ignoreMouse: true, ignoreAnimation: true })
-}
-</script>
   </body>
 </html>
