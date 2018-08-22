@@ -19,7 +19,7 @@ router.delete('/', (req, res)=>{
 //Check Password
 router.post('/', (req, res)=>{
     User.findOne({ username: req.body.username },(err, foundUser) => {
-      console.log(foundUser);
+      // console.log(foundUser);
         if( bcrypt.compareSync(req.body.password, foundUser.password) ){
             req.session.currentUser = foundUser;
             res.redirect('/');

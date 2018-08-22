@@ -10,18 +10,21 @@
           <ul>
             <% for(let i = 0; i < beasts.length; i++){ %>
               <a href="/beasts/<%=beasts[i].id; %>">
-                <li>
-                  <img src="<%= beasts[i].beastImg %>" alt="<%= beasts[i].name %>">
-                </li>
+
 
                   <li>
+                    <img src="<%= beasts[i].beastImg %>" alt="<%= beasts[i].name %>">
+                      <br>
                     <%= beasts[i].name %>
                       <br>
 
                     <%= beasts[i].description %>
+                    </a>
+                      <br>
+                    <%= beasts[i].artist %>
 
                   </li>
-                  </a>
+
                   <% } %>
 
           </ul>

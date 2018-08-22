@@ -24,7 +24,7 @@
 
         <!-- if user is the creator they can delete it -->
         <form action="/beasts/<%=beast.id; %>?_method=DELETE" method="POST">
-           <input type="submit" value="DELETE"/>
+           <input type="submit" value="DELETE" onclick="return confirm('Are you sure?')"/>
        </form>
         <a href="/beasts"><button type="button" name="button">Home</button></a>
 

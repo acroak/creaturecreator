@@ -49,19 +49,20 @@
 
       <form class="" action="/beasts" method="POST">
         <br/>
-      Name:
-      <input type="text" name="name" value="name" id="name">
-        <br/>
-      Description:
-      <textarea name="description" rows="8" cols="80" id="description"></textarea>
-        <br/>
-      Tags:
-      <input type="text" name="tags" value="tags" id="tags">
-        <br/>
+          Name:
+          <input type="text" name="name" id="name">
+            <br/>
+          Description:
+          <textarea name="description" rows="8" cols="80" id="description"></textarea>
+            <br/>
+          Tags:
+          <input type="text" name="tags" id="tags">
+
+            <br/>
 
       <% if (currentUser) { %>
+      <input type="text" name="artist" id="artist" value="<%=currentUser.username %>" style="display:none">
       <button id="save-button">Save</button>
-      <input type="text" name="artist" value="<%= currentUser.username %>" id="artist" style="display:none">
       <% } else { %>
         <h4>Sign in to save</h4>
       <% } %>

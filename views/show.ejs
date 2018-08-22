@@ -11,15 +11,19 @@
     <ul>
 
       <li>
+        Name: <%=beast.name; %> By: <%=beast.artist; %>
+        <br>
         <img src="<%= beast.beastImg; %>" alt="">
-          Name: <%=beast.name; %>
+        <br>
           Description: <%=beast.description; %>
+        <br>
           tags: <%=beast.tags; %>
       </li>
 
     </ul>
+    <% if (currentUser.username === beast.artist ) { %>
     <a href="/beasts/<%=beast.id; %>/edit"><button type="button" name="button">Edit</button></a>
-
+    <% } %>
 
    <div class="">
       <h5>Comments</h5>
@@ -29,9 +33,9 @@
                   <%=beast.comments[i].comment%>
               </p>
               <div class="">
-                  <!-- <a href="/users/<%=beast.comments[i].commentor%>"> -->
+                  <a href="/users/<%=beast.comments[i].commentor%>">
                   Commented by:  <%=beast.comments[i].commentor%>
-                  <!-- </a> -->
+                  </a>
 
               </div>
           </div>

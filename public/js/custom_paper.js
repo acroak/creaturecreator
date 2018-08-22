@@ -76,8 +76,9 @@ $('#save-button').click(function() {
   createdName = $("#name").val();
   createdDescript = $("#description").val();
   createdTags = $("#tags").val();
+  createdArtist = $("#artist").val();
   console.log(canvasData);
-  post('/beasts/', { beastImg: canvasData, name: createdName, description: createdDescript, tags: createdTags});
+  post('/beasts/', { beastImg: canvasData, name: createdName, description: createdDescript, tags: createdTags, artist: createdArtist});
   event.preventDefault();
 });
 

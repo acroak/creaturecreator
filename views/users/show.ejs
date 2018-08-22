@@ -6,16 +6,16 @@
   </head>
   <body>
     <%_include ../partials/nav.ejs %>
-    <h1>User page</h1>
 
-    <% if (user = currentUser) { %>
-      <h3>You are the correct user</h3>
-      <a href="#">Edit Profile</a>
-      <form action="/users/<%=user.id; %>?_method=DELETE" method="POST">
-         <input type="submit" value="DELETE PROFILE"/>
+
+
+    <% if (owner = true ) { %>
+      <a href="/users/<%=currentUser %>/edit">Edit Profile</a>
+      <form action="/users/<%=user %>?_method=DELETE" method="POST">
+         <input type="submit" value="DELETE PROFILE" onclick="return confirm('Are you sure? This gets rid of all your drawings permenantly.')"/>
       </form>
       <a href="#">Create Beast</a>
-    <%}%>
+      <% } %>
 
 
     <%_include ../partials/footer.ejs %>

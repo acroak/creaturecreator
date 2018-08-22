@@ -1,13 +1,17 @@
 const express = require('express');
 const router = express.Router();
 const Beasts = require('../models/beasts_model.js')
+const Users = require('../models/users.js')
 
 //Create New Route
 router.get('/new', async(req, res)=>{
-    res.render('new.ejs',{
-      currentUser: req.session.currentUser,
-      Beasts : Beasts
-    });
+  if (req.session.currentUser) {
+      res.render('new.ejs', {
+          currentUser: req.session.currentUser
+      });
+  } else {
+      res.send('You must login to create a Creature');
+  }
 });
 
 //Create Route
@@ -53,13 +57,10 @@ router.delete('/:id', async(req, res)=>{
 //POST for Comments
 router.post('/:entryId/comment', async(req, res) => {
     if (req.session.currentUser) {
-        // format the comment object
-        req.body.date = new Date();
         req.body.username = {id: req.session.currentUser._id, username: req.session.currentUser.username}
-        // Push it onto the entries comment property
         Beasts.findByIdAndUpdate(req.params.entryId, {$push: {comments: req.body}}, (err, result) => {
             if (err) {
-                console.log('Error trying to update comment');
+                console.log('ERR: cannot post comment');
 
             } else {
                 res.redirect('/beasts/' + req.params.entryId)
@@ -69,19 +70,33 @@ router.post('/:entryId/comment', async(req, res) => {
 })
 
 
-//Edit by ID, grab info based on id and populate fields
-router.get('/:id/edit', async(req, res)=>{
-    Beasts.findById(req.params.id, (err, foundBeast)=>{ //find the beast
-        res.render(
-    		'edit.ejs',
-    		{
-    			beast: foundBeast, //pass in found beast
-          currentUser: req.session.currentUser
-    		}
-    	);
-    });
-});
 
+router.get('/:id', (req, res) => {
+  let currentUser = null;
+  let artist = false;
+  let foundFave = false;
+  Entries.findById(req.params.entryId, (err, foundBeast) => {
+    if (req.session.currentUser) {
+      currentUser = req.session.currentUser;
+        if (foundBeast.artist === req.session.currentUser._id) {
+          artist = true;
+          res.render('show.ejs', {
+              currentUser: req.session.currentUser,
+              currentBeast: foundBeast,
+              artist: artist,
+              favorite: foundFave,
+              moment: moment
+          })
+        }else {
+            res.render('show.ejs', {
+                currentUser: req.session.currentUser,
+                currentBeast: foundBeast,
+                artist: artist,
+            })
+        }
+      }
+  })
+})
 //PUT route to submit the edits
 router.put('/:id', async(req, res)=>{
   Beasts.findByIdAndUpdate(req.params.id, req.body, {new:true}, (err, updatedModel)=>{
