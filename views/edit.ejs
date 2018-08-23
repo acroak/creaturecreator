@@ -4,29 +4,47 @@
         <%_include ../views/partials/head.ejs %>
     </head>
     <body>
-      <% if (currentUser) {%>
-        <h1>hello</h1>
-        <% } else {%>
-          <h1>LOG IN</h1>
-      <%} %>
+      <%_include ../views/partials/nav.ejs %>
+
+      <div class="edit-container">
         <h1>Edit</h1>
-        <form action="/beasts/<%=beast.id%>?_method=PUT" method="POST">
-          <h1>EVENTUAL IMAGE</h1>
-      		Name: <input type="text" name="name" value="<%=beast.name%>"/>
-          <br/>
-      		Description: <input type="text" name="description" value="<%=beast.description%>"/>
-      		<br/>
-          Tags: <input type="text" name="tags" value="<%=beast.tags%>"/>
-          <br/>
-              <input type="submit" name="" value="Submit Changes"/>
+        <img src="<%=beast.beastImg%>" alt="<%=beast.name%>" class="show-img">
+
+        <form action="/beasts/<%=beast.id%>?_method=PUT" method="POST" class="edit-form">
+          <div class="form-group row">
+            <label for="name" class="col-sm-2 col-form-label">Name:</label>
+            <div class="col-sm-10">
+              <input type="text" name="name" id="name" value="<%=beast.name%>">
+            </div>
+          </div>
+
+          <div class="form-group row form-container">
+            <label for="description" class="col-sm-2 col-form-label">Description:</label>
+            <div class="col-sm-10">
+              <textarea name="description" rows="8" cols="80" id="description"><%=beast.description%></textarea>
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label for="tags" class="col-sm-2 col-form-label">Tags:</label>
+            <div class="col-sm-10">
+              <input type="text" name="tags" id="tags" value="<%=beast.tags%>">
+            </div>
+
+          </div>
+
+          <div class="form-check justify-content-center">
+            <input type="submit" name="" class=" btn-success "
+            value="Submit Changes"/>
+          </div>
         </form>
 
         <!-- if user is the creator they can delete it -->
-        <form action="/beasts/<%=beast.id; %>?_method=DELETE" method="POST">
-           <input type="submit" value="DELETE" onclick="return confirm('Are you sure?')"/>
+        <form action="/beasts/<%=beast.id; %>?_method=DELETE" method="POST" class="edit-img-delete-btn">
+           <input type="submit" value="DELETE" class=" btn-danger " onclick="return confirm('Are you sure?')"/>
        </form>
-        <a href="/beasts"><button type="button" name="button">Home</button></a>
 
-        <%_include ../views/partials/footer.ejs %>
+      </div>
+      <%_include ../views/partials/footer.ejs %>
     </body>
 </html>

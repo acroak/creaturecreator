@@ -28,25 +28,13 @@ router.get('/new', (req, res)=>{
 
 //encrpt password, redirect home
 router.post('/', (req, res) => {
-
-    if (User.find({username: req.body.username}) === true){
-      event.preventDefult();
-      res.send('in use')
-    } else {
-      req.body.password = bcrypt.hashSync(req.body.password, bcrypt.genSaltSync(10));
-      if (!req.body.img) {
-          req.body.img = "http://via.placeholder.com/500x500";
-      }
+    req.body.password = bcrypt.hashSync(req.body.password, bcrypt.genSaltSync(10));
       User.create(req.body, (err, data) => {
           if(!err && data) {
               req.session.currentUser = data;
               res.redirect('/');
           }
-
       })
-    }
-
-
 })
 
 //Show
@@ -81,10 +69,17 @@ router.get('/:username/gallery', (req, res)=>{
 //Delete Route
 router.delete('/:id', (req, res) => {
   console.log(req.params);
-	User.remove({_id: req.params.id}, (err, user)=>{
-    req.session.destroy(() => { })
-    res.redirect('/')
-  }); //remove the item from the array
+  console.log(req.params.id);
+  User.find({ _id: req.params.id}, (err, user)=>{
+  
+    // but why is it undefines when it eturns the whole user object up above?
+  })
+  // Beasts.remove({artist: req.params.username})
+	// User.remove({_id: req.params.id}, (err, user)=>{
+  //   req.session.destroy(() => { })
+  //   res.redirect('/')
+
+  // }); //remove the item from the array
 });
 
 

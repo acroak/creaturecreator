@@ -11,6 +11,11 @@
         <div class="">
           <h1>"<%=beast.name; %>"</h1>
           <h2>By: <%=beast.artist; %></h2>
+          <% if (currentUser != undefined ) { %>
+            <% if (currentUser.username === beast.artist ) { %>
+            <a href="/beasts/<%=beast.id; %>/edit"><button type="button" name="button" class="btn btn-danger">Edit</button></a>
+            <% } %>
+          <% } %>
           <br>
           <img src="<%= beast.beastImg; %>" alt="" class="show-img">
           <br>
@@ -20,13 +25,6 @@
           tags: <%=beast.tags; %>
         </div>
       </div>
-
-
-      <% if (currentUser != undefined ) { %>
-        <% if (currentUser.username === beast.artist ) { %>
-        <a href="/beasts/<%=beast.id; %>/edit"><button type="button" name="button">Edit</button></a>
-        <% } %>
-      <% } %>
 
      <div class="">
         <h3>Comments</h3>
@@ -50,7 +48,7 @@
             <fieldset>
               <legend>Post A Comment</legend>
 
-              <textarea class="" name="comment" id="comment" cols="30" rows="3"></textarea>
+              <textarea class="" name="comment" id="comment" cols="80" rows="3"></textarea>
               <input type="text" name="commentor" value="<%= currentUser.username %>" style="display:none">
               <br>
               <input class="" type="submit" value="Post Comment">

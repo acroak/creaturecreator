@@ -10,7 +10,11 @@ router.get('/new', async(req, res)=>{
           currentUser: req.session.currentUser
       });
   } else {
-      res.send('You must login to create a Creature');
+      res.render('notloggedin.ejs',{
+        currentUser: req.session.currentUser,
+        beasts: Beasts,
+        users: Users
+      });
   }
 });
 
@@ -43,7 +47,11 @@ router.get('/gallery/mine', (req, res)=>{
         });
     });
   } else {
-    res.send('login')
+    res.render('notloggedin.ejs',{
+      currentUser: req.session.currentUser,
+      beasts: Beasts,
+      users: Users
+    });
   }
 });
 
