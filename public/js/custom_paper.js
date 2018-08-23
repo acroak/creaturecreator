@@ -4,7 +4,9 @@ var canvasData = null;
 var stroke_width = 5;
 var createdName = null;
 var createdDescript = null;
-
+$('#color-grabber').click(function() {
+  stroke_color = $("#color-grabber").val();;
+});
 
 $('#red').click(function() {
   stroke_color = 'red';

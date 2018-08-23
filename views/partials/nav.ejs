@@ -6,30 +6,45 @@
   <%} %> -->
   <nav class="navbar navbar-light bg-light">
 
-      <ul class="nav justify-content-center nav-pills ">
-        <li class="navbar-brand flex-sm-fill"><h1>Creature Creator</h1></li>
+      <div class="row">
+        <div class="col">
+          <h1 class="flex-sm-fill">Creature Creator</h1>
+        </div>
+      </div>
 
+      <div class="row">
+        <div class="col">
+          <ul class="nav justify-content-center nav-pills ">
+            <li><a href="/beasts"><button class="btn btn-outline-success" type="button">HOME</button></a></li>
+            <li><a href="/beasts/new"><button class="btn btn-outline-success" type="button">Create a New Creature</button></a></li>
+          <% if (currentUser) { %>
+            <li><a href="/users/<%=currentUser.username%>"><button class="btn btn-outline-success" type="button">Account</button></a></li>
+            <li><a href="/beasts/gallery/mine"><button class="btn btn-outline-success" type="button">Your Gallery</button></a></li>
+            <li>
+                <form action="/sessions?_method=DELETE" method="POST">
+                    <input class="form-control mr-sm-2 btn-outline-dark"type="submit" value="Logout"/>
+                </form>
+            </li>
+          <% } else {%>
+              <li>
+                <button class="btn btn-outline-success" type="button">  <a href="/sessions/new">Log In</a></button>
+              </li>
+              <li>
+                <button class="btn btn-outline-success" type="button">  <a href="/users/new">Register</a></button>
+              </li>
+          <%}%>
+          </ul>
+        </div>
 
-        <li><a href="/beasts"><button class="btn btn-outline-success" type="button">HOME</button></a></li>
-        <li><a href="/beasts/new"><button class="btn btn-outline-success" type="button">Create a New Creature</button></a></li>
-      <% if (currentUser) { %>
-        <li><a href="/users/<%=currentUser.username%>"><button class="btn btn-outline-success" type="button">Account</button></a></li>
-        <li><a href="/beasts/gallery/mine"><button class="btn btn-outline-success" type="button">Your Gallery</button></a></li>
-
-        <li>
-            <form action="/sessions?_method=DELETE" method="POST">
-                <input class="form-control mr-sm-2 btn-outline-dark"type="submit" value="Logout"/>
-            </form>
-        </li>
-      <% } else {%>
-          <li>
-            <button class="btn btn-outline-success" type="button">  <a href="/sessions/new">Log In</a></button>
-          </li>
-          <li>
-            <button class="btn btn-outline-success" type="button">  <a href="/users/new">Register</a></button>
-          </li>
-      <%}%>
-      </ul>
+      </div>
+      <div class="row">
+        <div class="col">
+          <fieldset>
+            <input type="text" name="" value="" placeholder="inactive">
+            <input type="submit" name="" value="SEARCH">
+          </fieldset>
+        </div>
+      </div>
 
   </nav>
 </div>

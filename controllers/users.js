@@ -10,7 +10,7 @@ router.get('/', (req, res) => {
     // Get the latest beasts
     User.find({}, (err, result) => {
         if (!err && result) {
-            res.render('./users/index.ejs', {
+            res.render('notloggedin.ejs', {
                 currentUser: req.session.currentUser,
                 userBeasts: result
             })
@@ -46,7 +46,7 @@ router.get('/:username', (req, res) => {
                 user: result,
             })
         } else {
-            res.send('access denied')
+            res.render('access denied')
 
         }
   })
@@ -70,16 +70,16 @@ router.get('/:username/gallery', (req, res)=>{
 router.delete('/:id', (req, res) => {
   console.log(req.params);
   console.log(req.params.id);
-  User.find({ _id: req.params.id}, (err, user)=>{
-  
-    // but why is it undefines when it eturns the whole user object up above?
+  console.log('*******************************');
+  console.log(req.session.currentUser.username); //timmy
+  Beasts.remove({artist: req.session.currentUser.username}, (err)=>{
+    console.log('error removing users created beasts', err);
   })
-  // Beasts.remove({artist: req.params.username})
-	// User.remove({_id: req.params.id}, (err, user)=>{
-  //   req.session.destroy(() => { })
-  //   res.redirect('/')
+	User.remove({_id: req.params.id}, (err, user)=>{
+    req.session.destroy(() => { })
+    res.redirect('/')
 
-  // }); //remove the item from the array
+  }); //remove the item from the array
 });
 
 

@@ -30,7 +30,9 @@ router.post('/', (req, res)=>{
             res.redirect('/sessions/new');
         }
       } else {
-        res.send('User or password not found')
+        res.render('sessions/notfound.ejs',{
+          currentUser: req.session.currentUser
+        })
       }
 
     });
