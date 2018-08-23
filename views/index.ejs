@@ -6,28 +6,23 @@
     <body>
 
 <%_include ../views/partials/nav.ejs %>
-          <ul>
-            <% for(let i = 0; i < beasts.length; i++){ %>
-              <a href="/beasts/<%=beasts[i].id; %>">
 
-
-                  <li>
+        <div class="row gallery-container">
+          <div class="row">
+              <% for(let i = 0; i < beasts.length; i++){ %>
+                <div class="gallery-div col-sm-4">
+                  <a href="/beasts/<%=beasts[i].id; %>">
                     <img src="<%= beasts[i].beastImg %>" alt="<%= beasts[i].name %>">
-                      <br>
+                  </a>
+                  <div class="">
                     <%= beasts[i].name %>
-                      <br>
+                    <br>
+                    <a href="/users/<%= beasts[i].artist %>/gallery"><%= beasts[i].artist %></a>
+                  </div>
+                </div>
 
-                    <%= beasts[i].description %>
-                    </a>
-                      <br>
-                      <a href="/users/<%= beasts[i].artist %>/gallery"><%= beasts[i].artist %></a>
-
-
-                  </li>
-
-                  <% } %>
-
-          </ul>
+              <% } %>
+          </div>
         </div>
 
         <%_include ../views/partials/footer.ejs %>

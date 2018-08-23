@@ -6,12 +6,28 @@
     </head>
     <body>
       <%_include ../partials/nav.ejs %>
-        <h1>Sign In</h1>
-        <form action="/sessions" method="POST">
-            <input type="text" name="username" placeholder="username">
-            <input type="password" name="password" />
-            <input type="submit" value="Log In" />
-        </form>
+      <form action="/sessions" method="POST">
+
+        <fieldset class="form-group">
+          <legend>Sign In</legend>
+          <div class="form-check">
+            <label for="username">
+              <input type="text" name="username" id="username" placeholder="username">
+            </label>
+          </div>
+          <div class="form-check">
+            <label for="username">
+              <input type="password" id="password" name="password" placeholder="password"/>
+            </label>
+          </div>
+          <div class="form-check">
+            <label for="username">
+              <input type="submit" value="Log In" />
+            </label>
+          </div>
+        </fieldset>
+
+      </form>
         <%_include ../partials/footer.ejs %>
     </body>
 </html>

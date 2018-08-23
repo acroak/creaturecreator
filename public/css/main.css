@@ -1,14 +1,22 @@
 *{
   color:black;
+
+
+}
+body{
+  background-image: url(https://media.istockphoto.com/vectors/olden-grid-seamless-pattern-subtle-grunge-background-vector-id861912094?s=170667a);
 }
 canvas{
   border: 2px solid black;
   width: 600px;
   height: 600px;
+  background: white;
+
 
 }
 .canvas-container{
-
+  text-align: center;
+    padding-top: 15px;
 }
 #color-picker {
   margin: 5px auto;
@@ -22,10 +30,11 @@ canvas{
   width: 40px;
   height: 40px;
   border-radius: 3px;
+  border: 1px solid black;
 }
 
 .color:hover {
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 100, 0.2), 0 6px 20px 0 rgba(0, 0, 100, 0.19);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.9), 0 6px 20px 0 rgba(0, 50, 0, 0.9);
 }
 
 #red {
@@ -62,4 +71,67 @@ canvas{
 
 #white {
   background-color: #fffcff;
+}
+.gallery-container, .your-gallery-container{
+  padding: 15px;
+  text-align: center;
+}
+.gallery-div img, .your-gallery-div img{
+  max-width: 60%;
+}
+.page-footer{
+  margin-top: 20px;
+  padding: 15px;
+}
+.create-container{
+  margin: 0 auto;
+}
+.form-container{
+  align-items: center;
+}
+.brush-btns{
+  text-align: center;
+}
+.main-create-content, .show-container{
+  display: flex;
+  flex-direction: column;
+  max-width: 80%;
+  margin: 0 auto;
+}
+input, textarea{
+  border: 1px solid black;
+}
+input:focus{
+  border: 1px solid blue;
+}
+.page-footer{
+  text-align: center;
+}
+.create-form {
+  padding: 20px;
+  margin: 0 auto;
+}
+.create-form label{
+  font-weight: 700;
+  font-size: 1.4em;
+}
+/* the exported imags are PNGs and have a transparency */
+img{
+  background-color: white;
+}
+.navbar button, .navbar input{
+  margin-top: 15px;
+}
+.show-img{
+  max-width: 100%;
+  display: flex;
+  margin: 0 auto;
+
+}
+.comment-div{
+  border-radius: 15px;
+  background-color: rgba(128,128,128, 0.5);
+  padding: 5px;
+  max-width: 65%;
+  margin: 7px;
 }

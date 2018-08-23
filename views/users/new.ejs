@@ -5,12 +5,29 @@
     </head>
     <body>
       <%_include ../partials/nav.ejs %>
-        <h1>Create User</h1>
-        <form action="/users" method="POST">
-            <input type="text" name="username" placeholder="username">
-            <input type="password" name="password" />
-            <input type="submit" value="Create User" />
-        </form>
-        <%_include ../partials/footer.ejs %>
+
+      <form action="/users" method="POST">
+
+        <fieldset class="form-group">
+          <legend>Create User</legend>
+          <div class="form-check">
+            <label for="username">
+              <input type="text" name="username" id="username" placeholder="username">
+            </label>
+          </div>
+          <div class="form-check">
+            <label for="username">
+              <input type="password" id="password" name="password" placeholder="password"/>
+            </label>
+          </div>
+          <div class="form-check">
+            <label for="username">
+              <input type="submit" value="Create User" />
+            </label>
+          </div>
+        </fieldset>
+      </form>
+
+      <%_include ../partials/footer.ejs %>
     </body>
 </html>

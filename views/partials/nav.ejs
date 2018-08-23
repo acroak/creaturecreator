@@ -4,27 +4,32 @@
     <% } else {%>
       <h1>LOG IN</h1>
   <%} %> -->
-  <nav>
-    <ul>
-      <li><a href="/beasts">HOME</a></li>
-      <li><a href="/beasts/new">Create a New Creature</a></li>
-    <% if (currentUser) { %>
-      <li><a class="nav-link" href="/users/<%=currentUser.username%>">Account</a></li>
-      <li><a href="/beasts/gallery/mine">Your Gallery</a></li>
+  <nav class="navbar navbar-light bg-light">
 
-      <li>
-          <form action="/sessions?_method=DELETE" method="POST">
-              <input type="submit" value="Logout"/>
-          </form>
-      </li>
-    <% } else {%>
+      <ul class="nav justify-content-center nav-pills ">
+        <li class="navbar-brand flex-sm-fill"><h1>Creature Creator</h1></li>
+
+
+        <li><a href="/beasts"><button class="btn btn-outline-success" type="button">HOME</button></a></li>
+        <li><a href="/beasts/new"><button class="btn btn-outline-success" type="button">Create a New Creature</button></a></li>
+      <% if (currentUser) { %>
+        <li><a href="/users/<%=currentUser.username%>"><button class="btn btn-outline-success" type="button">Account</button></a></li>
+        <li><a href="/beasts/gallery/mine"><button class="btn btn-outline-success" type="button">Your Gallery</button></a></li>
+
         <li>
-            <a href="/sessions/new">Log In</a>
+            <form action="/sessions?_method=DELETE" method="POST">
+                <input class="form-control mr-sm-2 btn-outline-dark"type="submit" value="Logout"/>
+            </form>
         </li>
-        <li>
-            <a href="/users/new">Register</a>
-        </li>
-    <%}%>
-    </ul>
+      <% } else {%>
+          <li>
+            <button class="btn btn-outline-success" type="button">  <a href="/sessions/new">Log In</a></button>
+          </li>
+          <li>
+            <button class="btn btn-outline-success" type="button">  <a href="/users/new">Register</a></button>
+          </li>
+      <%}%>
+      </ul>
+
   </nav>
 </div>

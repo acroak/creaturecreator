@@ -6,50 +6,59 @@
   <body>
 
     <%_include ../views/partials/nav.ejs %>
-
-    <ul>
-      <li>
-        Name: <%=beast.name; %> By: <%=beast.artist; %>
-        <br>
-        <img src="<%= beast.beastImg; %>" alt="">
-        <br>
-          Description: <%=beast.description; %>
-        <br>
+    <div class="show-container">
+      <div class="main-show-content">
+        <div class="">
+          <h1>"<%=beast.name; %>"</h1>
+          <h2>By: <%=beast.artist; %></h2>
+          <br>
+          <img src="<%= beast.beastImg; %>" alt="" class="show-img">
+          <br>
+          <br>
+          <h4><%=beast.description; %></h4>
+          <br>
           tags: <%=beast.tags; %>
-      </li>
-    </ul>
+        </div>
+      </div>
 
-    <% if (currentUser != undefined ) { %>
-      <% if (currentUser.username === beast.artist ) { %>
-      <a href="/beasts/<%=beast.id; %>/edit"><button type="button" name="button">Edit</button></a>
+
+      <% if (currentUser != undefined ) { %>
+        <% if (currentUser.username === beast.artist ) { %>
+        <a href="/beasts/<%=beast.id; %>/edit"><button type="button" name="button">Edit</button></a>
+        <% } %>
       <% } %>
+
+     <div class="">
+        <h3>Comments</h3>
+        <% for(let i=0; i < beast.comments.length; i++) { %>
+            <div class="comment-div">
+                <p>
+                    <%=beast.comments[i].comment%>
+                </p>
+                <div class="">
+                    <a href="/users/<%=beast.comments[i].commentor%>">
+                    Commented by:  <%=beast.comments[i].commentor%>
+                    </a>
+
+                </div>
+            </div>
+        <% } %>
+    </div>
+
+     <% if (currentUser) { %>
+        <form class="" action="/beasts/<%=beast._id%>/comment" method="POST">
+            <fieldset>
+              <legend>Post A Comment</legend>
+
+              <textarea class="" name="comment" id="comment" cols="30" rows="3"></textarea>
+              <input type="text" name="commentor" value="<%= currentUser.username %>" style="display:none">
+              <br>
+              <input class="" type="submit" value="Post Comment">
+            </fieldset>
+        </form>
     <% } %>
+    </div>
 
-   <div class="">
-      <h5>Comments</h5>
-      <% for(let i=0; i < beast.comments.length; i++) { %>
-          <div class="">
-              <p>
-                  <%=beast.comments[i].comment%>
-              </p>
-              <div class="">
-                  <a href="/users/<%=beast.comments[i].commentor%>">
-                  Commented by:  <%=beast.comments[i].commentor%>
-                  </a>
-
-              </div>
-          </div>
-      <% } %>
-  </div>
-
-   <% if (currentUser) { %>
-      <form class="" action="/beasts/<%=beast._id%>/comment" method="POST">
-          <label for="comment">Post a comment</label>
-          <textarea class="" name="comment" id="comment" cols="30" rows="3"></textarea>
-          <input type="text" name="commentor" value="<%= currentUser.username %>" style="display:none">
-          <input class="" type="submit" value="Post Comment">
-      </form>
-  <% } %>
 
   <%_include ../views/partials/footer.ejs %>
   </body>
