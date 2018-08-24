@@ -44,35 +44,6 @@ $('#white').click(function() {
   stroke_color = '#fffcff';
 })
 
-function onMouseDown(event) {
-  path = new Path();
-  path.strokeColor = stroke_color;
-  path.strokeWidth = stroke_width;
-}
-
-function onMouseDrag(event) {
-  path.add(event.point);
-}
-
-function post(path, parameters) {
-    var form = $('<form></form>');
-
-    form.attr("method", "post");
-    form.attr("action", path);
-
-    $.each(parameters, function(key, value) {
-        var field = $('<input></input>');
-
-        field.attr("type", "hidden");
-        field.attr("name", key);
-        field.attr("value", value);
-        form.append(field);
-    });
-
-    $(document.body).append(form);
-    form.submit();
-}
-
 $('#save-button').click(function() {
   canvasData = "data:image/svg+xml;utf8," + encodeURIComponent(paper.project.exportSVG({asString:true}));
   createdName = $("#name").val();
@@ -106,6 +77,31 @@ $('#width-decrease').click(function() {
   console.log('increased', stroke_width);
 });
 
-$('#reset-size').click(function() {
-  stroke_width = 5;
-});
+function onMouseDown(event) {
+  path = new Path();
+  path.strokeColor = stroke_color;
+  path.strokeWidth = stroke_width;
+}
+
+function onMouseDrag(event) {
+  path.add(event.point);
+}
+
+function post(path, parameters) {
+    var form = $('<form></form>');
+
+    form.attr("method", "post");
+    form.attr("action", path);
+
+    $.each(parameters, function(key, value) {
+        var field = $('<input></input>');
+
+        field.attr("type", "hidden");
+        field.attr("name", key);
+        field.attr("value", value);
+        form.append(field);
+    });
+
+    $(document.body).append(form);
+    form.submit();
+}
