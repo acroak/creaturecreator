@@ -7,14 +7,24 @@
     <%_include ../partials/nav.ejs %>
 
 
+<div class="edit-user-container">
+  <h1>EDIT</h1>
 
+  <form action="/users/<%=currentUser.username%>?_method=PUT" method="POST" class="edit-user-from">
+    <fieldset>
+      <legend>Username</legend>
+      <input type="text" name="name" id="name" value="<%=currentUser.username%>">
+    </fieldset>
+    <br />
+    <input type="submit" name="" value="update">
+  </form>
 
-      <!-- <a href="/users/<%=currentUser %>/edit">Edit Profile</a> -->
-      <form action="/users/<%=user.id %>?_method=DELETE" method="POST" class="edit-form">
-         <div class="form-group row">
-           <input type="submit" value="DELETE PROFILE" onclick="return confirm('Are you sure? This will permenantly delete your profile and all Creatures')" class="btn-danger delete-user"/>
-         </div>
-      </form>
+  <form action="/users/<%=currentUser.id %>?_method=DELETE" method="POST" class="edit-form">
+     <div class="form-group row">
+       <input type="submit" value="DELETE PROFILE" onclick="return confirm('Are you sure? This will permenantly delete your profile and all Creatures')" class="btn-danger delete-user"/>
+     </div>
+  </form>
+</div>
 
 
 

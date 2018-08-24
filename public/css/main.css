@@ -100,7 +100,9 @@ input, textarea{
 input:focus{
   border: 1px solid blue;
 }
-
+.edit-user-container{
+  text-align: center;
+}
 .create-form, .edit-form  {
   padding: 20px;
   margin: 0 auto;
@@ -116,6 +118,12 @@ img{
 .navbar button, .navbar input{
   margin-top: 15px;
   margin-bottom: 15px;
+}
+.navbar a{
+  color: rgb(60, 167, 69);
+}
+.navbar a:hover{
+  color: white;
 }
 .show-img{
   max-width: 100%;

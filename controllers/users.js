@@ -37,20 +37,20 @@ router.post('/', (req, res) => {
       })
 })
 
-//Show
-router.get('/:username', (req, res) => {
-    User.findOne({ username: req.params.username }, (err, result) => {
-        if (req.session.currentUser.username === result.username) {
-            res.render('./users/edit.ejs', {
-                currentUser: req.session.currentUser,
-                user: result,
-            })
-        } else {
-            res.render('access denied')
-
-        }
-  })
-})
+// Show
+// router.get('/:username', (req, res) => {
+//     User.findOne({ username: req.params.username }, (err, result) => {
+//         if (req.session.currentUser.username === result.username) {
+//             res.render('./users/edit.ejs', {
+//                 currentUser: req.session.currentUser,
+//                 user: result,
+//             })
+//         } else {
+//             res.render('access denied')
+//
+//         }
+//   })
+// })
 
 router.get('/:username/gallery', (req, res)=>{
   console.log('hello');
@@ -65,57 +65,49 @@ router.get('/:username/gallery', (req, res)=>{
     })
   })
 })
+router.put('/:username', (req, res)=>{
+    User.findByIdAndUpdate(req.params.id, req.body,  (err, updatedModel)=>{
+          res.redirect('/');
+      });
+});
 
 //Delete Route
-router.delete('/:id', (req, res) => {
-  console.log(req.params);
-  console.log(req.params.id);
-  console.log('*******************************');
-  console.log(req.session.currentUser.username); //timmy
+router.delete('/:username', (req, res) => {
   Beasts.remove({artist: req.session.currentUser.username}, (err)=>{
     console.log('error removing users created beasts', err);
   })
 	User.remove({_id: req.params.id}, (err, user)=>{
     req.session.destroy(() => { })
     res.redirect('/')
+  });
+});
 
-  }); //remove the item from the array
+//Edit
+router.get('/:id/edit',(req,res)=>{
+  User.findOne({ username: req.session.currentUser.username }, (err, result) => {
+    if (req.session.currentUser.username === result.username) {
+      User.findById({username: req.session.currentUser.username}, (err, user)=>{
+        res.render('./users/edit.ejs', {
+          currentUser: req.session.currentUser,
+          user: user
+        });
+      });
+    } else {
+      res.redirect('/')
+    }
+  })
+
+
 });
 
 
-//Edit by ID, grab info based on id and populate fields
-// router.get('/:id/edit', (req, res) => {
-//
-//     if (req.session.currentUser === user) {
-//         User.findOne({ username: req.params.username }, (err, result) => {
-//             if (err) {
-//                 res.send('Error retrieving user')
-//             } else {
-//                 res.render('./users/edit.ejs', {
-//                     currentUser: result
-//                 })
-//             }
-//         })
-//     } else {
-//         res.redirect('/');
-//     }
-// })
-
-//PUT route to submit the edits
-// router.put('/:username', (req, res) => {
-//     // Check if the logged in user is the artist
-//     if (req.session.currentUser.username === req.params.username) {
-//         User.findByIdAndUpdate(req.session.currentUser._id, req.body, {new: true}, (err, result) => {
-//             console.log('Updated user: ', result);
-//             // Update the session
-//             req.session.currentUser = result;
-//             res.redirect('/users/'+result.username);
-//         })
-//     } else {
-//         res.redirect('/');
-//     }
-// })
 
 
+router.put('/:id', (req, res)=>{
+    // Beasts.find({artist: currentUser.username})
+    User.findByIdAndUpdate(req.session.currentUser.username, req.body,  (err, updatedModel)=>{
+          res.redirect('/');
+      });
+});
 
 module.exports = router;

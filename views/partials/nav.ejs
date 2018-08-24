@@ -18,7 +18,7 @@
             <li><a href="/beasts"><button class="btn btn-outline-success" type="button">HOME</button></a></li>
             <li><a href="/beasts/new"><button class="btn btn-outline-success" type="button">Create a New Creature</button></a></li>
           <% if (currentUser) { %>
-            <li><a href="/users/<%=currentUser.username%>"><button class="btn btn-outline-success" type="button">Account</button></a></li>
+            <li><a href="/users/<%=currentUser.username%>/edit"><button class="btn btn-outline-success" type="button">Account</button></a></li>
             <li><a href="/beasts/gallery/mine"><button class="btn btn-outline-success" type="button">Your Gallery</button></a></li>
             <li>
                 <form action="/sessions?_method=DELETE" method="POST">
