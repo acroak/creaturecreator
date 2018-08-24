@@ -13,7 +13,11 @@
   <form action="/users/<%=currentUser.username%>?_method=PUT" method="POST" class="edit-user-from">
     <fieldset>
       <legend>Username</legend>
-      <input type="text" name="name" id="name" value="<%=currentUser.username%>">
+      <input type="text" name="name" id="name" value="inactive">
+    </fieldset>
+    <fieldset>
+      <legend>Password</legend>
+      <input type="text" name="name" id="name" value="inactive">
     </fieldset>
     <br />
     <input type="submit" name="" value="update">
