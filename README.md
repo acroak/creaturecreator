@@ -21,7 +21,7 @@
 <h2>User Stories</h2>
 <ul>
   <li>You can create a user</li>
-  <li>You can delete a user</li>
+  <li>You can delete a user(in progress)</li>
   <li>Users can create and save monsters/creatures with descriptions and tags</li>
   <li>Users can edit the text components of a monster</li>
   <li>Users can delete a monster</li>

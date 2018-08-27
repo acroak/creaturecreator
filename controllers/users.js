@@ -52,6 +52,25 @@ router.post('/', (req, res) => {
 //   })
 // })
 
+
+router.put('/:username', (req, res)=>{
+    User.findByIdAndUpdate(req.params.id, req.body,  (err, updatedModel)=>{
+          res.redirect('/');
+      });
+});
+
+//Delete Route
+router.delete('/:username', (req, res) => {
+
+  Beasts.remove({artist: req.session.currentUser.username}, (err)=>{
+    console.log('error removing users created beasts', err);
+  })
+	User.remove({username: req.session.currentUser.username}, (err, user)=>{
+    req.session.destroy(() => { })
+    res.redirect('/')
+  });
+});
+
 router.get('/:username/gallery', (req, res)=>{
   console.log('hello');
   console.log(req.params.username);
@@ -65,23 +84,6 @@ router.get('/:username/gallery', (req, res)=>{
     })
   })
 })
-router.put('/:username', (req, res)=>{
-    User.findByIdAndUpdate(req.params.id, req.body,  (err, updatedModel)=>{
-          res.redirect('/');
-      });
-});
-
-//Delete Route
-router.delete('/:username', (req, res) => {
-  Beasts.remove({artist: req.session.currentUser.username}, (err)=>{
-    console.log('error removing users created beasts', err);
-  })
-	User.remove({_id: req.params.id}, (err, user)=>{
-    req.session.destroy(() => { })
-    res.redirect('/')
-  });
-});
-
 //Edit
 router.get('/:id/edit',(req,res)=>{
   User.findOne({ username: req.session.currentUser.username }, (err, result) => {
